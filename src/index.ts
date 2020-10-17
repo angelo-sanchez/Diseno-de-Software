@@ -1,4 +1,7 @@
 import server from './server';
+import { config } from './utils/config';
+
+
 import bodyParser from "body-parser";
 const PORT = Number(config.PORT || 3000);
 
@@ -32,5 +35,5 @@ server.use((req, res, next) => {
 
 
 server.listen(PORT, () => {
-    console.info(`MásVivo Core server listening on port [${PORT}] `);
+    console.info(`Server listening on port [${PORT}] `);
 });
