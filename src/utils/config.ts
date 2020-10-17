@@ -8,7 +8,8 @@ export const config = {
     JWT_SECRET: process.env.JWT_SECRET,
     BASE_URL: process.env.BASE_URL,
     MONGO_DB: {
-        CONN_STRING: `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@${process.env.MONGODB_HOST}/${process.env.MONGODB_DBNAME}?retryWrites=true&w=majority`,
+        CONN_STRING: "mongodb://localhost:27017/diseno",
+        //`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@${process.env.MONGODB_HOST}/${process.env.MONGODB_DBNAME}`,
         LOG: process.env.MONGO_DB_LOG
     },
     CORS: {

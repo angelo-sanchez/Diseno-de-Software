@@ -28,7 +28,7 @@ export class TestController {
      * @param res 
      */
     public testDatabase(req: Request, res: Response) {
-        
+        console.log(2);
         TestService.testDatabase()
             .then((data: any) => {
                 return res.status(200).json(data);

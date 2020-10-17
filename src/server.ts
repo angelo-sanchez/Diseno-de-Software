@@ -1,8 +1,11 @@
 import express from 'express';
 import * as bodyParser from 'body-parser';
-
+import mongoose = require("mongoose");
+import { config } from './utils/config';
+import { Routes } from './routes';
 class Server {
-
+    public routePrv: Routes = new Routes();
+    public mongoUrl: string = config.MONGO_DB.CONN_STRING;
     public app: express.Application;
 
 
@@ -10,8 +13,9 @@ class Server {
     constructor() {
         this.app = express();
         // Mongodb connection
-        //this.mongoSetup();
-
+        this.mongoSetup();
+        
+        this.routePrv.routes(this.app);
         
     }
 
@@ -22,15 +26,16 @@ class Server {
     }
 
 
-    // private mongoSetup(): void {
-    //     mongoose.Promise = global.Promise;
-    //     mongoose.connect(this.mongoUrl, { 
-    //         useUnifiedTopology: true, 
-    //         useNewUrlParser: true,
-    //         useFindAndModify: false,
-    //         useCreateIndex: true
-    //     });
-    // }
+    private mongoSetup(): void {
+        mongoose.Promise = global.Promise;
+        console.log(this.mongoUrl);
+        mongoose.connect(this.mongoUrl, { 
+            useUnifiedTopology: true, 
+            useNewUrlParser: true,
+            useFindAndModify: false,
+            useCreateIndex: true
+        });
+    }
 }
 
 export default new Server().app;
