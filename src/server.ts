@@ -14,7 +14,7 @@ class Server {
         this.app = express();
         // Mongodb connection
         this.mongoSetup();
-        
+        this.config();
         this.routePrv.routes(this.app);
         
     }

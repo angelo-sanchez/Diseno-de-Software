@@ -1,9 +1,11 @@
+import { ActorController } from './../controllers/actorController';
 import cors from 'cors';
 import express from 'express';
 import { Request, Response, NextFunction } from 'express';
 import { config } from '../utils/config';
 
 import { TestRouter } from './testRouter';
+import { ActorRouter } from './actorRouter';
 
 export class Routes {
 
@@ -34,6 +36,7 @@ export class Routes {
 
         // Routes
         app.use('/api/test', TestRouter);
+        app.use('/api/actor', ActorRouter);
     }
 
      
