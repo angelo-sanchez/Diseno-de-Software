@@ -1,20 +1,19 @@
 'use strict';
 
 import { Request, Response } from 'express';
-import { ActorService } from './../services/actorService';
+import { ActorSalaService } from '../services/actorSalaService';
 
-export class ActorController {
-
+export class ActorSalaController {
 
     public findAll(req: Request, res: Response) {
 
         let query: any = {};
 
-        if (req.body.firstName) {
-            query.firstName = req.body.firstName;
+        if (req.body.name) {
+            query.name = req.body.name;
         }
 
-        ActorService.findAll(query)
+        ActorSalaService.findAll(query)
             .then((data: any) => {
                 return res.status(data.status || 200).json(data.payload);
             })
@@ -27,11 +26,11 @@ export class ActorController {
     public create(req:Request, res:Response) {
         const data : any = {};
         
-        if (req.body['firstName'])
-            data.firstName = req.body.firstName;
-        if (req.body['userName'])
-            data.userName = req.body.userName;
-        ActorService.create(data)
+        if (req.body['name'])
+            data.name = req.body.name;
+        if (req.body['capacidad'])
+            data.capacidad = req.body.capacidad;
+        ActorSalaService.create(data)
         .then((data: any) => {
             return res.status(data.status || 201).json(data.payload);
         })

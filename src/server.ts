@@ -28,7 +28,7 @@ class Server {
 
     private mongoSetup(): void {
         mongoose.Promise = global.Promise;
-        console.log(this.mongoUrl);
+        
         mongoose.connect(this.mongoUrl, { 
             useUnifiedTopology: true, 
             useNewUrlParser: true,

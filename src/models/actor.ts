@@ -18,11 +18,11 @@ export const ActorSchema = new Schema({
         type: Date,
         default: Date.now
     }
-
 })
+ActorSchema.set('collection', 'Actor');
 
 ActorSchema.methods.getBasic = function() {
-
+ 
     const instance: any = {
         id: this._id.toString()
     }
@@ -38,7 +38,6 @@ ActorSchema.methods.getBasic = function() {
     if (this.createdAt) {
         instance.createdAt = this.createdAt;
     }
-
     return instance;
 
 
