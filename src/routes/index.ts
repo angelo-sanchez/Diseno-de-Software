@@ -1,6 +1,5 @@
+import { SalaRouter } from './salaRouter';
 import { ActorSalaRouter } from './actorSalaRouter';
-import { ActorSalaController } from './../controllers/actorSalaController';
-import { ActorController } from './../controllers/actorController';
 import cors from 'cors';
 import express from 'express';
 import { Request, Response, NextFunction } from 'express';
@@ -40,6 +39,7 @@ export class Routes {
         app.use('/api/test', TestRouter);
         app.use('/api/actor', ActorRouter);
         app.use('/api/actorSala', ActorSalaRouter);
+        app.use('/api/sala', SalaRouter);
     }
 
      
