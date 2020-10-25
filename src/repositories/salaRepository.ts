@@ -1,16 +1,16 @@
+
 'use strict'
 
 import * as mongoose from 'mongoose';
-import { ActorSchema } from './../models/actor';
+import { SalaSchema } from './../models/sala';
 
-const ActorModel: any = mongoose.model('Actor', ActorSchema);
+const SalaModel: any = mongoose.model('Sala', SalaSchema);
 
-export class ActorRepository {
+export class SalaRepository {
 
     static findAll(query: any){
-        console.log(query);
         return new Promise((resolve: any, reject: any) => {
-            ActorModel.find(query)
+            SalaModel.find(query)
                 .then((data: any) => {
                     if (data) {
                         resolve(data)
@@ -28,18 +28,16 @@ export class ActorRepository {
         return new Promise((resolve: any, reject: any) => {
             const _data: any = {};
             
-             if (data.userName)
-                _data.userName = data.userName;
-            if (data.firstName)
-                _data.firstName = data.firstName;
-            if (data.surname)
-                _data.surname = data.surname;
-            if (data.email)
-                _data.email = data.email;
+            if (data.nameSala)
+                _data.nameSala = data.nameSala;
+            if (data.members_number)
+                _data.members_number = data.members_number;
+            if (data.actor)
+                _data.actor = data.actor;
             if (data.password)
                 _data.password = data.password;
                   
-            const newClient = new ActorModel(_data);
+            const newClient = new SalaModel(_data);
             newClient.save()
                 .then((newClient: any) => {
                     if (newClient)

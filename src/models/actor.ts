@@ -6,12 +6,24 @@ const Schema = mongoose.Schema;
 
 export const ActorSchema = new Schema({
 
-    userName : {
-        type: String
+    firstName : {
+        type: String,
+        required: true
     },
 
-    firstName : {
-        type: String
+    surname: {
+        type: String,
+        required: true
+    },
+
+    password: {
+        type: String,
+        required: true
+    },
+    
+    email: {
+        type: String,
+        required: true
     },
 
     createdAt : {
@@ -27,12 +39,16 @@ ActorSchema.methods.getBasic = function() {
         id: this._id.toString()
     }
 
-    if (this.userName) {
-        instance.userName = this.userName;
-    }
-
     if (this.firstName) {
         instance.firstName = this.firstName;
+    }
+
+    if (this.surname) {
+        instance.surname = this.surname;
+    }
+
+    if (this.email) {
+        instance.email = this.email;
     }
 
     if (this.createdAt) {
