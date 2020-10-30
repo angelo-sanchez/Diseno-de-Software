@@ -1,15 +1,16 @@
+
 'use strict'
 
 import * as mongoose from 'mongoose';
-import { ActorSalaSchema } from './../models/actorSala';
+import { TareaSchema } from './../models/tarea';
 
-const ActorSalaModel: any = mongoose.model('Actor-Sala', ActorSalaSchema);
+const TareaModel: any = mongoose.model('Rol', TareaSchema);
 
-export class ActorSalaRepository {
+export class TareaRepository {
     static findAll(query: any){
         
         return new Promise((resolve: any, reject: any) => {
-            ActorSalaModel.find(query)
+            TareaModel.find(query)
                 .then((data: any) => {
                     if (data) {
                         resolve(data)
@@ -26,15 +27,23 @@ export class ActorSalaRepository {
 
         return new Promise((resolve: any, reject: any) => {
             const _data: any = {};
-            if (data.usuario)
-                _data.usuario = data.usuario;
-            if (data.sala)
-                _data.sala = data.sala;
+            
+            if (data.description)
+                _data.description = data.description;
+            
+            if (data.actorCreador)
+                _data.actorCreador = data.actorCreador;
+            
+            if (data.proyecto)
+                _data.proyecto = data.proyecto;
+            
+            if (data.estado)
+                _data.estado = data.estado;
 
-            if (data.rol)
-                _data.rol = data.rol;
+            if (data.story_point_stimate)
+                _data.story_point_stimate = data.story_point_stimate;
 
-            const newClient = new ActorSalaModel(_data);
+            const newClient = new TareaModel(_data);
             newClient.save()
                 .then((newClient: any) => {
                     if (newClient)
@@ -43,7 +52,7 @@ export class ActorSalaRepository {
                         resolve();
                 })
                 .catch((err: any) => {
-                    reject({ msg: ('ACTOR.ERROR_CREATE'), error: err })
+                    reject({ msg: ('ROL_CREATE'), error: err })
                 })
         });
 

@@ -1,15 +1,16 @@
+
 'use strict'
 
 import * as mongoose from 'mongoose';
-import { ActorSalaSchema } from './../models/actorSala';
+import { TareaActor } from './../models/tareaActor';
 
-const ActorSalaModel: any = mongoose.model('Actor-Sala', ActorSalaSchema);
+const TareaActorModel: any = mongoose.model('Rol', TareaActor);
 
-export class ActorSalaRepository {
+export class TareaActorRepository {
     static findAll(query: any){
         
         return new Promise((resolve: any, reject: any) => {
-            ActorSalaModel.find(query)
+            TareaActorModel.find(query)
                 .then((data: any) => {
                     if (data) {
                         resolve(data)
@@ -26,15 +27,14 @@ export class ActorSalaRepository {
 
         return new Promise((resolve: any, reject: any) => {
             const _data: any = {};
-            if (data.usuario)
-                _data.usuario = data.usuario;
-            if (data.sala)
-                _data.sala = data.sala;
+            
+            if (data.tarea)
+                _data.tarea = data.tarea;
+            
+            if (data.actor)
+                _data.actor = data.actor;
 
-            if (data.rol)
-                _data.rol = data.rol;
-
-            const newClient = new ActorSalaModel(_data);
+            const newClient = new TareaActorModel(_data);
             newClient.save()
                 .then((newClient: any) => {
                     if (newClient)
@@ -43,7 +43,7 @@ export class ActorSalaRepository {
                         resolve();
                 })
                 .catch((err: any) => {
-                    reject({ msg: ('ACTOR.ERROR_CREATE'), error: err })
+                    reject({ msg: ('TAREA_ACTOR_CREATE'), error: err })
                 })
         });
 

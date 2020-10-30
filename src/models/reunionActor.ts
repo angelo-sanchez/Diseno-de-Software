@@ -18,7 +18,7 @@ export const ReunionActor = new Schema({
 
 })
 
-ReunionActor.set('collection', 'Sala-Oficina');
+ReunionActor.set('collection', 'Reunion-Actor');
 
 ReunionActor.methods.getBasic = function() {
     

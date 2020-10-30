@@ -1,15 +1,15 @@
 'use strict'
 
 import * as mongoose from 'mongoose';
-import { ActorSalaSchema } from './../models/actorSala';
+import { OficinaSchema } from './../models/oficina';
 
-const ActorSalaModel: any = mongoose.model('Actor-Sala', ActorSalaSchema);
+const OficinaModel: any = mongoose.model('Oficina', OficinaSchema);
 
-export class ActorSalaRepository {
+export class OficinaRepository {
     static findAll(query: any){
         
         return new Promise((resolve: any, reject: any) => {
-            ActorSalaModel.find(query)
+            OficinaModel.find(query)
                 .then((data: any) => {
                     if (data) {
                         resolve(data)
@@ -26,15 +26,11 @@ export class ActorSalaRepository {
 
         return new Promise((resolve: any, reject: any) => {
             const _data: any = {};
-            if (data.usuario)
-                _data.usuario = data.usuario;
-            if (data.sala)
-                _data.sala = data.sala;
+            
+            if (data.nombreOficina)
+                _data.nombreOficina = data.nombreOficina;
 
-            if (data.rol)
-                _data.rol = data.rol;
-
-            const newClient = new ActorSalaModel(_data);
+            const newClient = new OficinaModel(_data);
             newClient.save()
                 .then((newClient: any) => {
                     if (newClient)
@@ -43,7 +39,7 @@ export class ActorSalaRepository {
                         resolve();
                 })
                 .catch((err: any) => {
-                    reject({ msg: ('ACTOR.ERROR_CREATE'), error: err })
+                    reject({ msg: ('METODOLOGIA_CREATE'), error: err })
                 })
         });
 

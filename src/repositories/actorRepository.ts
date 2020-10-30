@@ -28,8 +28,6 @@ export class ActorRepository {
         return new Promise((resolve: any, reject: any) => {
             const _data: any = {};
             
-             if (data.userName)
-                _data.userName = data.userName;
             if (data.firstName)
                 _data.firstName = data.firstName;
             if (data.surname)

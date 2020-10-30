@@ -36,7 +36,9 @@ export class SalaRepository {
                 _data.actor = data.actor;
             if (data.password)
                 _data.password = data.password;
-                  
+            if (data.metodologia)
+                _data.metodologia = data.metodologia;
+                
             const newClient = new SalaModel(_data);
             newClient.save()
                 .then((newClient: any) => {
@@ -46,7 +48,7 @@ export class SalaRepository {
                         resolve();
                 })
                 .catch((err: any) => {
-                    reject({ msg: ('ACTOR.ERROR_CREATE'), error: err })
+                    reject({ msg: ('SALA.ERROR_CREATE'), error: err })
                 })
         });
 

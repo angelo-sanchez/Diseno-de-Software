@@ -1,15 +1,15 @@
 'use strict'
 
 import * as mongoose from 'mongoose';
-import { ActorSalaSchema } from './../models/actorSala';
+import { ReunionSchema } from './../models/reunion';
 
-const ActorSalaModel: any = mongoose.model('Actor-Sala', ActorSalaSchema);
+const ReunionModel: any = mongoose.model('Reunion', ReunionSchema);
 
-export class ActorSalaRepository {
+export class ReunionRepository {
     static findAll(query: any){
         
         return new Promise((resolve: any, reject: any) => {
-            ActorSalaModel.find(query)
+            ReunionModel.find(query)
                 .then((data: any) => {
                     if (data) {
                         resolve(data)
@@ -26,15 +26,23 @@ export class ActorSalaRepository {
 
         return new Promise((resolve: any, reject: any) => {
             const _data: any = {};
-            if (data.usuario)
-                _data.usuario = data.usuario;
+            
+            if (data.actorCreator)
+                _data.actorCreator = data.actorCreator;
+            
             if (data.sala)
                 _data.sala = data.sala;
+            
+            if (data.proyecto)
+                _data.proyecto = data.proyecto;
 
-            if (data.rol)
-                _data.rol = data.rol;
+            if (data.fecha_inicio)
+                _data.fecha_inicio = data.fecha_inicio;
 
-            const newClient = new ActorSalaModel(_data);
+            if (data.fecha_fin)
+                _data.fecha_fin = data.fecha_fin;
+
+            const newClient = new ReunionModel(_data);
             newClient.save()
                 .then((newClient: any) => {
                     if (newClient)
@@ -43,7 +51,7 @@ export class ActorSalaRepository {
                         resolve();
                 })
                 .catch((err: any) => {
-                    reject({ msg: ('ACTOR.ERROR_CREATE'), error: err })
+                    reject({ msg: ('REUNION_CREATE'), error: err })
                 })
         });
 
