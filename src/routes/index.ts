@@ -1,3 +1,11 @@
+import { ReunionRoutes } from './reunionRoutes';
+import { TareaRoutes } from './tareaRouter';
+import { TareaActorRoutes } from './tareaActorRoutes';
+import { SalaOficinaRoutes } from './salaOficinaRouter';
+import { ReunionActorRoutes } from './reunionActorRouter';
+import { ReunionActor } from './../models/reunionActor';
+import { OficinaRouter } from './oficinaRouter';
+import { MetodologiaRouter } from './metodologiaRouter';
 import { SalaRouter } from './salaRouter';
 import { ActorSalaRouter } from './actorSalaRouter';
 import cors from 'cors';
@@ -7,6 +15,7 @@ import { config } from '../utils/config';
 
 import { TestRouter } from './testRouter';
 import { ActorRouter } from './actorRouter';
+import { ProyectoRouter } from './proyectoRouter';
 
 export class Routes {
 
@@ -40,6 +49,16 @@ export class Routes {
         app.use('/api/actor', ActorRouter);
         app.use('/api/actorSala', ActorSalaRouter);
         app.use('/api/sala', SalaRouter);
+        app.use('/api/metodologia', MetodologiaRouter);
+        app.use('/api/oficina', OficinaRouter);
+        app.use('/api/proyecto', ProyectoRouter);
+        app.use('/api/reunionActor', ReunionActorRoutes);
+        app.use('/api/salaOficina', SalaOficinaRoutes);
+        app.use('/api/tareaActor', TareaActorRoutes);
+        app.use('/api/tarea', TareaRoutes);
+        app.use('/api/reunion', ReunionRoutes);
+        
+        
     }
 
      

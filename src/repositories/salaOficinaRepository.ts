@@ -4,7 +4,7 @@
 import * as mongoose from 'mongoose';
 import { SalaOficina } from './../models/salaOficina';
 
-const SalaOficinaModel: any = mongoose.model('Rol', SalaOficina);
+const SalaOficinaModel: any = mongoose.model('Sala-Oficina', SalaOficina);
 
 export class SalaOficinaRepository {
     static findAll(query: any){

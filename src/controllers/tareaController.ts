@@ -9,24 +9,24 @@ export class TareaController {
 
         let query: any = {};
 
-        if (req.params.description) {
-            query.description = req.params.description;
+        if (req.query.description) {
+            query.description = req.query.description;
         }
 
-        if (req.params.actorCreador){
-            query.actorCreador = req.params.actorCreador;
+        if (req.query.actorCreador){
+            query.actorCreador = req.query.actorCreador;
         }
 
-        if (req.params.proyecto){
-            query.proyecto = req.params.proyecto;
+        if (req.query.proyecto){
+            query.proyecto = req.query.proyecto;
         }
 
-        if (req.params.estado){
-            query.estado = req.params.estado;
+        if (req.query.estado){
+            query.estado = req.query.estado;
         }
         
-        if (req.params.story_point_stimate){
-            query.story_point_stimate = req.params.story_point_stimate;
+        if (req.query.story_point_stimate){
+            query.story_point_stimate = req.query.story_point_stimate;
         }
 
         TareaService.findAll(query)

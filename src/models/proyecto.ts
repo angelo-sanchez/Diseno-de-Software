@@ -51,7 +51,7 @@ ProyectoSchema.methods.getBasic = function() {
         instance.nameProject = this.nameProject;
 
     if (this.descriptionProject) 
-        instance.sala = this.sala;
+        instance.descriptionProject = this.descriptionProject;
 
     if (this.sala)
         if (this.sala.getBasic)

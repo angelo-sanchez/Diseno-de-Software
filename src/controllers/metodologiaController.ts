@@ -9,8 +9,8 @@ export class MetodologiaController {
 
         let query: any = {};
 
-        if (req.params.nameMetodlogia) {
-            query.nameMetodologia = req.params.nameMetodlogia;
+        if (req.query.nameMetodologia) {
+            query.nameMetodologia = req.query.nameMetodologia;
         }
 
         MetodologiaService.findAll(query)

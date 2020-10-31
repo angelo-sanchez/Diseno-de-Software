@@ -13,4 +13,4 @@ router.route('')
 router.route('')
     .post(proyectoController.create);
 
-export const ProyectoRoutes: Router = router;
+export const ProyectoRouter: Router = router;

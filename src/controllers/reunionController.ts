@@ -9,24 +9,24 @@ export class ReunionController {
 
         let query: any = {};
 
-        if (req.params.actorCreator) {
-            query.actorCreator = req.params.actorCreator;
+        if (req.query.actorCreator) {
+            query.actorCreator = req.query.actorCreator;
         }
 
-        if (req.params.sala){
-            query.sala = req.params.sala;
+        if (req.query.sala){
+            query.sala = req.query.sala;
         }
 
-        if (req.params.proyecto) {
-            query.proyecto = req.params.proyecto;
+        if (req.query.proyecto) {
+            query.proyecto = req.query.proyecto;
         }
 
-        if (req.params.fecha_inicio){
-            query.fecha_inicio = req.params.fecha_inicio;
+        if (req.query.fecha_inicio){
+            query.fecha_inicio = req.query.fecha_inicio;
         }
 
-        if (req.params.fecha_fin){
-            query.fecha_fin = req.params.fecha_fin;
+        if (req.query.fecha_fin){
+            query.fecha_fin = req.query.fecha_fin;
         }
 
         ReunionService.findAll(query)

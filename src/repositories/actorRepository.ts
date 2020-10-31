@@ -8,7 +8,6 @@ const ActorModel: any = mongoose.model('Actor', ActorSchema);
 export class ActorRepository {
 
     static findAll(query: any){
-        console.log(query);
         return new Promise((resolve: any, reject: any) => {
             ActorModel.find(query)
                 .then((data: any) => {

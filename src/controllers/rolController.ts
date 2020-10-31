@@ -9,16 +9,16 @@ export class ReunionActorController {
 
         let query: any = {};
 
-        if (req.params.nombre) {
-            query.nombre = req.params.nombre;
+        if (req.query.nombre) {
+            query.nombre = req.query.nombre;
         }
 
-        if (req.params.metodologia){
-            query.metodologia = req.params.metodologia;
+        if (req.query.metodologia){
+            query.metodologia = req.query.metodologia;
         }
 
-        if (req.params.numero_jerarquico){
-            query.numero_jerarquico = req.params.numero_jerarquico;
+        if (req.query.numero_jerarquico){
+            query.numero_jerarquico = req.query.numero_jerarquico;
         }
 
 

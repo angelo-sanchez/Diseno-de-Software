@@ -10,6 +10,22 @@ export class SalaController {
 
         let query: any = {};
 
+        if (req.query.nameSala){
+            query.nameSala = req.query.nameSala;
+        }
+
+        if (req.query.members_number){
+            query.members_number = req.query.members_number;
+        }
+
+        if (req.query.actor) {
+            query.actor = req.query.actor;
+        }
+
+        if (req.query.metodologia){
+            query.metodologia = req.query.metodologia;
+        }
+
         SalaService.findAll(query)
             .then((data: any) => {
                 return res.status(data.status || 200).json(data.payload);
@@ -29,6 +45,8 @@ export class SalaController {
             data.members_number = req.body.members_number;
         if (req.body['actor'])
             data.actor = req.body.actor;
+        if (req.body['metodologia'])
+            data.metodologia = req.body.metodologia;
         if (req.body['password'])
             data.password = req.body.password;
         SalaService.create(data)

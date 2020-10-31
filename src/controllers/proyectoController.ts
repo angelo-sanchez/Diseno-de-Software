@@ -9,32 +9,32 @@ export class ProyectoController {
 
         let query: any = {};
 
-        if (req.params.nameProject) {
-            query.nameProject = req.params.nameProject;
+        if (req.query.nameProject) {
+            query.nameProject = req.query.nameProject;
         }
 
-        if (req.params.descriptionProject){
-            query.descriptionProject = req.params.descriptionProject;
+        if (req.query.descriptionProject){
+            query.descriptionProject = req.query.descriptionProject;
         }
 
-        if (req.params.sala) {
-            query.sala = req.params.sala;
+        if (req.query.sala) {
+            query.sala = req.query.sala;
         }
 
-        if (req.params.stateProject){
-            query.stateProject = req.params.stateProject;
+        if (req.query.stateProject){
+            query.stateProject = req.query.stateProject;
         }
 
-        if (req.params.fecha_limite_fin){
-            query.fecha_limite_fin = req.params.fecha_limite_fin;
+        if (req.query.fecha_limite_fin){
+            query.fecha_limite_fin = req.query.fecha_limite_fin;
         }
 
-        if (req.params.fecha_inicio_desarrollo) {
-            query.fecha_inicio_desarrollo = req.params.fecha_inicio_desarrollo;
+        if (req.query.fecha_inicio_desarrollo) {
+            query.fecha_inicio_desarrollo = req.query.fecha_inicio_desarrollo;
         }
 
-        if (req.params.fecha_finalizacion_desarrollo){
-            query.fecha_finalizacion_desarrollo = req.params.fecha_finalizacion_desarrollo;
+        if (req.query.fecha_finalizacion_desarrollo){
+            query.fecha_finalizacion_desarrollo = req.query.fecha_finalizacion_desarrollo;
         }
 
         ProyectoService.findAll(query)

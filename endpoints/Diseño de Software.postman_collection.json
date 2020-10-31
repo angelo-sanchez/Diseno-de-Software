@@ -1,0 +1,744 @@
+{
+	"info": {
+		"_postman_id": "42a99aae-2d44-4fd3-9d41-ed7fc9327666",
+		"name": "Diseño de Software",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Test",
+			"item": [
+				{
+					"name": "Test Database",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/test/database",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"test",
+								"database"
+							],
+							"query": [
+								{
+									"key": "firstName",
+									"value": "Facundo",
+									"disabled": true
+								},
+								{
+									"key": "surname",
+									"value": "Rodriguez",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "test@gmail.com",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Actor",
+			"item": [
+				{
+					"name": "Add Actor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Facundo\",\r\n    \"surname\": \"Rodriguez\",\r\n    \"email\": \"test@test\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/actor",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"actor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/actor",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"actor"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ActorSala",
+			"item": [
+				{
+					"name": "Find all",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/actorSala",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"actorSala"
+							],
+							"query": [
+								{
+									"key": "usuario",
+									"value": "5f8f9de3bb188845381ebdd4",
+									"disabled": true
+								},
+								{
+									"key": "sala",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "rol",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create ActorSala",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\": \"5f8f9de3bb188845381ebdd4\",\r\n    \"sala\": \"\",\r\n    \"rol\": \"\",\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/actorSala",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"actorSala"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Sala",
+			"item": [
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/sala",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"sala"
+							],
+							"query": [
+								{
+									"key": "metodologia",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "members_number",
+									"value": "10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Sala",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameSala\": \"Sala 1\",\r\n    \"members_number\": \"10\",\r\n    \"actor\": \"5f8f9de3bb188845381ebdd4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/sala",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"sala"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Metodologia",
+			"item": [
+				{
+					"name": "Create Metodologia",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameMetodologia\": \"FDD\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/metodologia",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"metodologia"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Oficina",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombreOficina\": \"Oficina 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/oficina",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"oficina"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/oficina",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"oficina"
+							],
+							"query": [
+								{
+									"key": "nombreOficina",
+									"value": "Oficina 1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Proyecto",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameProject\": \"Proyecto 2\",\r\n    \"descriptionProject\": \"Proyecto Diseño\",\r\n    \"sala\": \"5f9d4de60be3b62b2c70a5a1\",\r\n    \"stateProject\": \"Sprint 3\",\r\n    \"fecha_limite_fin\": \"31102020\",\r\n    \"fecha_inicio_desarrollo\": \"01012020\",\r\n    \"fecha_finalizacion_desarrollo\": \"03012021\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/proyecto",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"proyecto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/proyecto",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"proyecto"
+							],
+							"query": [
+								{
+									"key": "nameProject",
+									"value": "Proyecto 1",
+									"disabled": true
+								},
+								{
+									"key": "descriptionProject",
+									"value": "Proyecto de prueba",
+									"disabled": true
+								},
+								{
+									"key": "stateProject",
+									"value": "Sprint 1",
+									"disabled": true
+								},
+								{
+									"key": "sala",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "fecha_limite_fin",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "fecha_inicio_desarrollo",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "fecha_finalizacion_desarrollo",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ReunionActor",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"reunion\": \"5f9d54b5c893c11b3cd6f599\",\r\n    \"actor\": \"5f9d4b6175bbba1ea0f29ae1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/reunionActor",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"reunionActor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/reunionActor",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"reunionActor"
+							],
+							"query": [
+								{
+									"key": "reunion",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "actor",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Reunion",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"actorCreator\": \"5f9d4b6175bbba1ea0f29ae1\",\r\n    \"sala\": \"5f9d4de60be3b62b2c70a5a1\",\r\n    \"proyecto\": \"5f9d51f4f084ec2564e44e9b\",\r\n    \"fecha_inicio\": \"01012020\",\r\n    \"fecha_fin\" : \"10012020\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/reunion",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"reunion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/reunion",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"reunion"
+							],
+							"query": [
+								{
+									"key": "actorCreator",
+									"value": "5f9d4b6175bbba1ea0f29ae1",
+									"disabled": true
+								},
+								{
+									"key": "sala",
+									"value": "5f9d4de60be3b62b2c70a5a1",
+									"disabled": true
+								},
+								{
+									"key": "proyecto",
+									"value": "5f9d51f4f084ec2564e44e9b",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "SalaOficina",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oficina\": \"5f9d5096f084ec2564e44e97\",\r\n    \"sala\": \"5f9d4de60be3b62b2c70a5a1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/salaOficina",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"salaOficina"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/salaOficina",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"salaOficina"
+							],
+							"query": [
+								{
+									"key": "oficina",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "sala",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "TareaActor",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"actor\": \"5f9d4b6175bbba1ea0f29ae1\",\r\n    \"tarea\": \"5f9d5673c893c11b3cd6f59c\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/tareaActor",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"tareaActor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/tareaActor",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"tareaActor"
+							],
+							"query": [
+								{
+									"key": "tarea",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "actor",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Tarea",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Integrar api\",\r\n    \"actorCreador\": \"5f9d4b6175bbba1ea0f29ae1\",\r\n    \"proyecto\": \"5f9d51f4f084ec2564e44e9b\",\r\n    \"estado\": \"In progress\",\r\n    \"story_point_stimate\": \"8\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/tarea",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"tarea"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/tarea",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"tarea"
+							],
+							"query": [
+								{
+									"key": "description",
+									"value": "Integrar api",
+									"disabled": true
+								},
+								{
+									"key": "estado",
+									"value": "In progress",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

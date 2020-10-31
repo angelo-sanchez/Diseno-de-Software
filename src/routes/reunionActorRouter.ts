@@ -13,4 +13,4 @@ router.route('')
 router.route('')
     .post(reunionController.create);
 
-export const ReunionRoutes: Router = router;
+export const ReunionActorRoutes: Router = router;

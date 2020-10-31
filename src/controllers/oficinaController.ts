@@ -9,8 +9,8 @@ export class OficinaController {
 
         let query: any = {};
 
-        if (req.params.nombreOficina) {
-            query.nombreOficina = req.params.nombreOficina;
+        if (req.query.nombreOficina) {
+            query.nombreOficina = req.query.nombreOficina;
         }
 
         OficinaService.findAll(query)

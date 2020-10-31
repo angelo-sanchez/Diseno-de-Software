@@ -9,12 +9,12 @@ export class TareaActorController {
 
         let query: any = {};
 
-        if (req.params.tarea) {
-            query.tarea = req.params.tarea;
+        if (req.query.tarea) {
+            query.tarea = req.query.tarea;
         }
 
-        if (req.params.actor){
-            query.actor = req.params.actor;
+        if (req.query.actor){
+            query.actor = req.query.actor;
         }
 
         TareaActorService.findAll(query)

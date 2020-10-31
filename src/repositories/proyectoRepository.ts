@@ -3,11 +3,10 @@
 import * as mongoose from 'mongoose';
 import { ProyectoSchema } from './../models/proyecto';
 
-const ProyectoModel: any = mongoose.model('Oficina', ProyectoSchema);
+const ProyectoModel: any = mongoose.model('Proyecto', ProyectoSchema);
 
 export class ProyectoRepository {
     static findAll(query: any){
-        
         return new Promise((resolve: any, reject: any) => {
             ProyectoModel.find(query)
                 .then((data: any) => {

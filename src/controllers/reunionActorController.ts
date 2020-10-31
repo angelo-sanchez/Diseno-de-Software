@@ -9,12 +9,12 @@ export class ReunionActorController {
 
         let query: any = {};
 
-        if (req.params.reunion) {
-            query.reunion = req.params.reunion;
+        if (req.query.reunion) {
+            query.reunion = req.query.reunion;
         }
 
-        if (req.params.actor){
-            query.actor = req.params.actor;
+        if (req.query.actor){
+            query.actor = req.query.actor;
         }
 
         ReunionActorService.findAll(query)

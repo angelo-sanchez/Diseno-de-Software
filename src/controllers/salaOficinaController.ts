@@ -9,12 +9,12 @@ export class SalaOficinaController {
 
         let query: any = {};
 
-        if (req.params.oficina) {
-            query.oficina = req.params.oficina;
+        if (req.query.oficina) {
+            query.oficina = req.query.oficina;
         }
 
-        if (req.params.sala){
-            query.sala = req.params.sala;
+        if (req.query.sala){
+            query.sala = req.query.sala;
         }
 
         SalaOficinaService.findAll(query)

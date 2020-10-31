@@ -9,16 +9,16 @@ export class ActorSalaController {
 
         let query: any = {};
 
-        if (req.params.usuario) {
-            query.usuario = req.params.usuario;
+        if (req.query.usuario) {
+            query.usuario = req.query.usuario;
         }
 
-        if (req.params.sala){
-            query.sala = req.params.sala;
+        if (req.query.sala){
+            query.sala = req.query.sala;
         }
 
-        if (req.params.rol) {
-            query.rol = req.params.rol;
+        if (req.query.rol) {
+            query.rol = req.query.rol;
         }
 
         ActorSalaService.findAll(query)
