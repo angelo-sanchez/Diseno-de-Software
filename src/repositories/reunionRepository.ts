@@ -1,15 +1,15 @@
 'use strict'
 
 import * as mongoose from 'mongoose';
-import { ActorSchema } from './../models/actor';
+import { ReunionSchema } from './../models/reunion';
 
-const ActorModel: any = mongoose.model('Actor', ActorSchema);
+const ReunionModel: any = mongoose.model('Reunion', ReunionSchema);
 
-export class ActorRepository {
-
+export class ReunionRepository {
     static findAll(query: any){
+        
         return new Promise((resolve: any, reject: any) => {
-            ActorModel.find(query)
+            ReunionModel.find(query)
                 .then((data: any) => {
                     if (data) {
                         resolve(data)
@@ -27,16 +27,22 @@ export class ActorRepository {
         return new Promise((resolve: any, reject: any) => {
             const _data: any = {};
             
-            if (data.firstName)
-                _data.firstName = data.firstName;
-            if (data.surname)
-                _data.surname = data.surname;
-            if (data.email)
-                _data.email = data.email;
-            if (data.password)
-                _data.password = data.password;
-                  
-            const newClient = new ActorModel(_data);
+            if (data.actorCreator)
+                _data.actorCreator = data.actorCreator;
+            
+            if (data.sala)
+                _data.sala = data.sala;
+            
+            if (data.proyecto)
+                _data.proyecto = data.proyecto;
+
+            if (data.fecha_inicio)
+                _data.fecha_inicio = data.fecha_inicio;
+
+            if (data.fecha_fin)
+                _data.fecha_fin = data.fecha_fin;
+
+            const newClient = new ReunionModel(_data);
             newClient.save()
                 .then((newClient: any) => {
                     if (newClient)
@@ -45,10 +51,9 @@ export class ActorRepository {
                         resolve();
                 })
                 .catch((err: any) => {
-                    reject({ msg: ('ACTOR.ERROR_CREATE'), error: err })
+                    reject({ msg: ('REUNION_CREATE'), error: err })
                 })
         });
 
     }
-
 }

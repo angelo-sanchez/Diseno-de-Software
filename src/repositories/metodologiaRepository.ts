@@ -1,15 +1,15 @@
 'use strict'
 
 import * as mongoose from 'mongoose';
-import { ActorSchema } from './../models/actor';
+import { MetodologiaSchema } from './../models/metodologia';
 
-const ActorModel: any = mongoose.model('Actor', ActorSchema);
+const MetodologiaModel: any = mongoose.model('Metodologia', MetodologiaSchema);
 
-export class ActorRepository {
-
+export class MetologiaRepository {
     static findAll(query: any){
+        
         return new Promise((resolve: any, reject: any) => {
-            ActorModel.find(query)
+            MetodologiaModel.find(query)
                 .then((data: any) => {
                     if (data) {
                         resolve(data)
@@ -27,16 +27,10 @@ export class ActorRepository {
         return new Promise((resolve: any, reject: any) => {
             const _data: any = {};
             
-            if (data.firstName)
-                _data.firstName = data.firstName;
-            if (data.surname)
-                _data.surname = data.surname;
-            if (data.email)
-                _data.email = data.email;
-            if (data.password)
-                _data.password = data.password;
-                  
-            const newClient = new ActorModel(_data);
+            if (data.nameMetodologia)
+                _data.nameMetodologia = data.nameMetodologia;
+
+            const newClient = new MetodologiaModel(_data);
             newClient.save()
                 .then((newClient: any) => {
                     if (newClient)
@@ -45,10 +39,9 @@ export class ActorRepository {
                         resolve();
                 })
                 .catch((err: any) => {
-                    reject({ msg: ('ACTOR.ERROR_CREATE'), error: err })
+                    reject({ msg: ('METODOLOGIA_CREATE'), error: err })
                 })
         });
 
     }
-
 }

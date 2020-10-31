@@ -1,27 +1,23 @@
 'use strict';
 
 import { Request, Response } from 'express';
-import { ActorSalaService } from '../services/actorSalaService';
+import { ReunionActorService } from '../services/reunionActorService';
 
-export class ActorSalaController {
+export class ReunionActorController {
 
     public findAll(req: Request, res: Response) {
 
         let query: any = {};
 
-        if (req.query.usuario) {
-            query.usuario = req.query.usuario;
+        if (req.query.reunion) {
+            query.reunion = req.query.reunion;
         }
 
-        if (req.query.sala){
-            query.sala = req.query.sala;
+        if (req.query.actor){
+            query.actor = req.query.actor;
         }
 
-        if (req.query.rol) {
-            query.rol = req.query.rol;
-        }
-
-        ActorSalaService.findAll(query)
+        ReunionActorService.findAll(query)
             .then((data: any) => {
                 return res.status(data.status || 200).json(data.payload);
             })
@@ -34,14 +30,15 @@ export class ActorSalaController {
     public create(req:Request, res:Response) {
         const data : any = {};
         
-        if (req.body['usuario'])
-            data.name = req.body.usuario;
-        if (req.body['sala'])
-            data.sala = req.body.sala;
-        if (req.body['rol'])
-            data.rol = req.body.rol;
+        if (req.body.reunion) {
+            data.reunion = req.body.reunion;
+        }
 
-        ActorSalaService.create(data)
+        if (req.body.actor){
+            data.actor = req.body.actor;
+        }
+
+        ReunionActorService.create(data)
         .then((data: any) => {
             return res.status(data.status || 201).json(data.payload);
         })

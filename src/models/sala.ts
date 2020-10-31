@@ -15,15 +15,19 @@ export const SalaSchema = new Schema({
     },
 
     actor: [ {
-        firstName: String,
-        surname: String,
-        email: String
+        type: Schema.Types.ObjectId,
+        ref : 'Actor'
     }],
 
     password: {
         type: String,
-        required: true
-    }
+        required: false
+    },
+
+    metodologia: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Metodologia'
+    }]
 
 })
    
@@ -42,8 +46,17 @@ SalaSchema.methods.getBasic = function() {
     }
 
     if (this.actor) {
-        instance.actor = this.actor;
+        if (this.actor.getBasic)
+            instance.actor = this.actor.getBasic();
     }
+
+    if (this.nameSala) 
+        instance.nameSala = this.nameSala;
+    
+    if (this.metodologia)
+        if (this.metodologia.getBasic){
+            instance.metologia = this.metodologia.getBasic();
+        }
 
     return instance;
 }

@@ -10,6 +10,18 @@ export class ActorController {
 
         let query: any = {};
 
+        if (req.query.firstName){
+            query.firstName = req.query.firstName;
+        }
+
+        if (req.query.surname) {
+            query.surname = req.query.surname;
+        }
+
+        if (req.query.email) {
+            query.email = req.query.email;
+        }
+
         ActorService.findAll(query)
             .then((data: any) => {
                 return res.status(data.status || 200).json(data.payload);

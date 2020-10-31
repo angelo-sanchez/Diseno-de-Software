@@ -1,15 +1,16 @@
+
 'use strict'
 
 import * as mongoose from 'mongoose';
-import { ActorSchema } from './../models/actor';
+import { TareaSchema } from './../models/tarea';
 
-const ActorModel: any = mongoose.model('Actor', ActorSchema);
+const TareaModel: any = mongoose.model('Rol', TareaSchema);
 
-export class ActorRepository {
-
+export class TareaRepository {
     static findAll(query: any){
+        
         return new Promise((resolve: any, reject: any) => {
-            ActorModel.find(query)
+            TareaModel.find(query)
                 .then((data: any) => {
                     if (data) {
                         resolve(data)
@@ -27,16 +28,22 @@ export class ActorRepository {
         return new Promise((resolve: any, reject: any) => {
             const _data: any = {};
             
-            if (data.firstName)
-                _data.firstName = data.firstName;
-            if (data.surname)
-                _data.surname = data.surname;
-            if (data.email)
-                _data.email = data.email;
-            if (data.password)
-                _data.password = data.password;
-                  
-            const newClient = new ActorModel(_data);
+            if (data.description)
+                _data.description = data.description;
+            
+            if (data.actorCreador)
+                _data.actorCreador = data.actorCreador;
+            
+            if (data.proyecto)
+                _data.proyecto = data.proyecto;
+            
+            if (data.estado)
+                _data.estado = data.estado;
+
+            if (data.story_point_stimate)
+                _data.story_point_stimate = data.story_point_stimate;
+
+            const newClient = new TareaModel(_data);
             newClient.save()
                 .then((newClient: any) => {
                     if (newClient)
@@ -45,10 +52,9 @@ export class ActorRepository {
                         resolve();
                 })
                 .catch((err: any) => {
-                    reject({ msg: ('ACTOR.ERROR_CREATE'), error: err })
+                    reject({ msg: ('ROL_CREATE'), error: err })
                 })
         });
 
     }
-
 }

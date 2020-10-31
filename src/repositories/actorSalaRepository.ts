@@ -26,10 +26,13 @@ export class ActorSalaRepository {
 
         return new Promise((resolve: any, reject: any) => {
             const _data: any = {};
-            if (data.name)
-                _data.name = data.name;
-            if (data.firstName)
-                _data.capacidad = data.capacidad;
+            if (data.usuario)
+                _data.usuario = data.usuario;
+            if (data.sala)
+                _data.sala = data.sala;
+
+            if (data.rol)
+                _data.rol = data.rol;
 
             const newClient = new ActorSalaModel(_data);
             newClient.save()
