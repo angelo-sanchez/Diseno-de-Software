@@ -3,7 +3,7 @@
 import { RolRepository } from './../repositories/rolRepository';
 
 
-export class ActorSalaService {
+export class RolService {
     static findAll(query: any): Promise<any> {
         return new Promise((resolve: any, reject: any) => {
             RolRepository.findAll(query)

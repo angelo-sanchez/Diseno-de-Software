@@ -3,7 +3,7 @@
 import { TareaActorRepository } from './../repositories/tareaActorRepository';
 
 
-export class ActorSalaService {
+export class TareaActorService {
     static findAll(query: any): Promise<any> {
         return new Promise((resolve: any, reject: any) => {
             TareaActorRepository.findAll(query)

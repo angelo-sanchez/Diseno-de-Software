@@ -3,7 +3,7 @@
 import { OficinaRepository } from './../repositories/oficinaRepository';
 
 
-export class ActorSalaService {
+export class OficinaService {
     static findAll(query: any): Promise<any> {
         return new Promise((resolve: any, reject: any) => {
             OficinaRepository.findAll(query)

@@ -1,27 +1,19 @@
 'use strict';
 
 import { Request, Response } from 'express';
-import { ActorSalaService } from '../services/actorSalaService';
+import { OficinaService } from '../services/oficinaService';
 
-export class ActorSalaController {
+export class OficinaController {
 
     public findAll(req: Request, res: Response) {
 
         let query: any = {};
 
-        if (req.params.usuario) {
-            query.usuario = req.params.usuario;
+        if (req.params.nombreOficina) {
+            query.nombreOficina = req.params.nombreOficina;
         }
 
-        if (req.params.sala){
-            query.sala = req.params.sala;
-        }
-
-        if (req.params.rol) {
-            query.rol = req.params.rol;
-        }
-
-        ActorSalaService.findAll(query)
+        OficinaService.findAll(query)
             .then((data: any) => {
                 return res.status(data.status || 200).json(data.payload);
             })
@@ -34,14 +26,10 @@ export class ActorSalaController {
     public create(req:Request, res:Response) {
         const data : any = {};
         
-        if (req.body['usuario'])
-            data.name = req.body.usuario;
-        if (req.body['sala'])
-            data.sala = req.body.sala;
-        if (req.body['rol'])
-            data.rol = req.body.rol;
-
-        ActorSalaService.create(data)
+        if (req.body['nombreOficina'])
+            data.nombreOficina = req.body['nombreOficina'];
+            
+        OficinaService.create(data)
         .then((data: any) => {
             return res.status(data.status || 201).json(data.payload);
         })

@@ -1,7 +1,7 @@
 'use strict';
 
 import { Request, Response } from 'express';
-import { ActorSalaService } from '../services/actorSalaService';
+import { MetodologiaService } from '../services/metodologiaService';
 
 export class ActorSalaController {
 
@@ -9,19 +9,11 @@ export class ActorSalaController {
 
         let query: any = {};
 
-        if (req.params.usuario) {
-            query.usuario = req.params.usuario;
+        if (req.params.nameMetodlogia) {
+            query.nameMetodologia = req.params.nameMetodlogia;
         }
 
-        if (req.params.sala){
-            query.sala = req.params.sala;
-        }
-
-        if (req.params.rol) {
-            query.rol = req.params.rol;
-        }
-
-        ActorSalaService.findAll(query)
+        MetodologiaService.findAll(query)
             .then((data: any) => {
                 return res.status(data.status || 200).json(data.payload);
             })
@@ -34,14 +26,10 @@ export class ActorSalaController {
     public create(req:Request, res:Response) {
         const data : any = {};
         
-        if (req.body['usuario'])
-            data.name = req.body.usuario;
-        if (req.body['sala'])
-            data.sala = req.body.sala;
-        if (req.body['rol'])
-            data.rol = req.body.rol;
-
-        ActorSalaService.create(data)
+        if (req.body['nameMetodologia'])
+            data.nameMetodologia = req.body.nameMetodologia;
+            
+        MetodologiaService.create(data)
         .then((data: any) => {
             return res.status(data.status || 201).json(data.payload);
         })

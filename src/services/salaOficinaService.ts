@@ -1,9 +1,9 @@
 'use strict';
 
-import { SalaOficinaRepository } from './../repositories/rolRepository';
+import { SalaOficinaRepository } from './../repositories/salaOficinaRepository';
 
 
-export class ActorSalaService {
+export class SalaOficinaService {
     static findAll(query: any): Promise<any> {
         return new Promise((resolve: any, reject: any) => {
             SalaOficinaRepository.findAll(query)

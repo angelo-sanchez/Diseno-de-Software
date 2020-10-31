@@ -3,7 +3,7 @@
 import { ReunionRepository } from './../repositories/reunionRepository';
 
 
-export class ActorSalaService {
+export class ReunionService {
     static findAll(query: any): Promise<any> {
         return new Promise((resolve: any, reject: any) => {
             ReunionRepository.findAll(query)

@@ -3,7 +3,7 @@
 import { MetologiaRepository } from './../repositories/metodologiaRepository';
 
 
-export class ActorSalaService {
+export class MetodologiaService {
     static findAll(query: any): Promise<any> {
         return new Promise((resolve: any, reject: any) => {
             MetologiaRepository.findAll(query)

@@ -6,7 +6,7 @@ import { SalaOficina } from './../models/salaOficina';
 
 const SalaOficinaModel: any = mongoose.model('Rol', SalaOficina);
 
-export class MetologiaRepository {
+export class SalaOficinaRepository {
     static findAll(query: any){
         
         return new Promise((resolve: any, reject: any) => {

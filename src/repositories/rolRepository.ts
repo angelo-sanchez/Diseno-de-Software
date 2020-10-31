@@ -6,7 +6,7 @@ import { RolSchema } from './../models/rol';
 
 const RolModel: any = mongoose.model('Rol', RolSchema);
 
-export class SalaOficinaRepository {
+export class RolRepository {
     static findAll(query: any){
         
         return new Promise((resolve: any, reject: any) => {

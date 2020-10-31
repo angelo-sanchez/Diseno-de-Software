@@ -3,7 +3,7 @@
 import { ProyectoRepository } from './../repositories/proyectoRepository';
 
 
-export class ActorSalaService {
+export class ProyectoService {
     static findAll(query: any): Promise<any> {
         return new Promise((resolve: any, reject: any) => {
             ProyectoRepository.findAll(query)
