@@ -3,7 +3,7 @@
 import { Request, Response } from 'express';
 import { MetodologiaService } from '../services/metodologiaService';
 
-export class ActorSalaController {
+export class MetodologiaController {
 
     public findAll(req: Request, res: Response) {
 
