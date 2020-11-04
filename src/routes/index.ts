@@ -1,3 +1,4 @@
+import { JiraRouter } from './jiraRouter';
 import { ReunionRoutes } from './reunionRoutes';
 import { TareaRoutes } from './tareaRouter';
 import { TareaActorRoutes } from './tareaActorRoutes';
@@ -57,7 +58,7 @@ export class Routes {
         app.use('/api/tareaActor', TareaActorRoutes);
         app.use('/api/tarea', TareaRoutes);
         app.use('/api/reunion', ReunionRoutes);
-        
+        app.use('/api/jira', JiraRouter);
         
     }
 

@@ -15,5 +15,13 @@ export const config = {
         WHITELIST: process.env.CORS_WHITELIST
                     ? process.env.CORS_WHITELIST.split(',')
                     : []
+    },
+    JIRA: {
+        PROTOCOL: process.env.PROTOCOL ? process.env.PROTOCOL : 'https',
+        HOST: process.env.HOST,
+        USERNAME: process.env.USERNAME,
+        PASSWORD: process.env.PASSWORD,
+        APIVERSION: process.env.API_VERSION ? process.env.API_VERSION : '2',
+        STRICTSSL: process.env.STRICTSSL ? process.env.STRICTSSL : true
     }
 }
