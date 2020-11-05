@@ -1,10 +1,11 @@
+import { Router } from 'express';
 import server from './server';
 import { config } from './utils/config';
 
 
 import bodyParser from "body-parser";
 const PORT = Number(config.PORT || 3000);
-
+const router: Router = Router();
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 
@@ -36,4 +37,4 @@ server.use((req, res, next) => {
 
 server.listen(PORT, () => {
     console.info(`Server listening on port [${PORT}] `);
-});
+})
