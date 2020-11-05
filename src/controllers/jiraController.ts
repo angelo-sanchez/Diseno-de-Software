@@ -2,6 +2,7 @@
 
 import { JiraService } from './../services/jiraService';
 import { Request, Response } from 'express';
+import { rejects } from 'assert';
 
 export class JiraController {
 
@@ -20,6 +21,18 @@ export class JiraController {
 
     }
 
+    public getIssue(req: Request, res: Response) {
+        const issueId : any = req.params.issueId;
+
+        JiraService.getIssue(issueId)
+            .then((data: any) => {
+                return res.status(200).json(data);
+            })
+            .catch((err: any) => {
+                return res.status(500).json(err);
+            })
+    }
+
     public getBoard(req: Request, res:Response) {
         
         const boardId : any = req.params.boardId;
@@ -35,7 +48,7 @@ export class JiraController {
 
 
     public getIssuesForBoard(req: Request, res:Response) {
-        
+      
         const boardId: any = req.params.boardId;
 
         JiraService.getIssuesForBoard(boardId)
@@ -112,7 +125,16 @@ export class JiraController {
     //         })
     // }
 
-
+    public getIssuesForUser(req: Request, res:Response) {
+        const username: any = req.query.username;
+        JiraService.getUsersIssues(username, true)
+            .then((data: any) => {
+                return res.status(200).json(data);
+            })
+            .catch((err: any) => {
+                return res.status(500).json(err);
+            })
+    }
     public getUser(req: Request, res: Response){
 
         const username : any = req.query.username;

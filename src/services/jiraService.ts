@@ -5,14 +5,14 @@ import JiraClient from "jira-connector";
 import { config } from './../utils/config';
 
 
-// let jira = new JiraApi({
-//     protocol: config.JIRA.PROTOCOL,
-//     host: config.JIRA.HOST,
-//     username: config.JIRA.USERNAME,
-//     password: config.JIRA.PASSWORD,
-//     apiVersion: config.JIRA.APIVERSION,
-//     strictSSL: true
-// });
+let jira = new JiraApi({
+    protocol: config.JIRA.PROTOCOL,
+    host: config.JIRA.HOST,
+    username:  'farodriguez@alumnos.exa.unicen.edu.ar',
+    password: 'r7fKDTOOyYyoqtd9Mwga6CB2',
+    apiVersion: config.JIRA.APIVERSION,
+    strictSSL: true
+});
 
 
 let jiraConnector = new JiraClient({
@@ -87,26 +87,26 @@ export class JiraService {
         
         return new Promise((resolve: any, reject: any) => {
             
-            // jira.addNewIssue(issue)
-            //     .then((data:any) => {
-            //         resolve(data)
-            //     })
-            //     .catch((err:any) => {
-            //         reject(err);
-            //     })
+            jira.addNewIssue(issue)
+                .then((data:any) => {
+                    resolve(data)
+                })
+                .catch((err:any) => {
+                    reject(err);
+                })
         })
     }
 
     public static deleteIssue(issue: any) {
 
         return new Promise((resolve: any, reject: any) => {
-            // jira.deleteIssue(issue)
-            //     .then((data:any) => {
-            //         resolve(data);
-            //     })
-            //     .catch((err:any) => {
-            //         reject(err);
-            //     })
+            jira.deleteIssue(issue)
+                .then((data:any) => {
+                    resolve(data);
+                })
+                .catch((err:any) => {
+                    reject(err);
+                })
         })
     }
 
@@ -126,13 +126,13 @@ export class JiraService {
     public static updateIssue(issueId: any, issueUpdate: any) {
         
         return new Promise((resolve: any, reject: any) => {
-            // jira.updateIssue(issueId, issueUpdate)
-            //     .then((data: any) => {
-            //         resolve(data)
-            //     })
-            //     .catch((err: any) => {
-            //         reject(err);
-            //     })
+            jira.updateIssue(issueId, issueUpdate)
+                .then((data: any) => {
+                    resolve(data)
+                })
+                .catch((err: any) => {
+                    reject(err);
+                })
         })
     }
 
@@ -171,5 +171,40 @@ export class JiraService {
                 })
         })
     }
+
+    public static getIssue(issueId: any) {
+        return new Promise((resolve, reject) => {
+            jiraConnector.issue.getTransitions()
+                .then((data: any) => {
+                    resolve(data);
+                })
+                .catch((err: any) => {
+                    reject(err);
+                });
+        })
+    }
+
+    public static editIssue(id: any, data: any) {
+        return new Promise((resolve, reject) => {
+            jiraConnector.issue.editIssue({})
+        })
+    }
+
+    public static getUsersIssues(username: any, open: any) {
+        return new Promise((resolve, reject) => {
+            const openJql = open ? ' AND status in (Open, \'In Progress\', Reopened)' : '';
+            jira.searchJira(
+                `assignee = ${username.replace('@', '\\u0040')}${openJql}`, {}
+              )
+                .then((data: any) => {
+                    resolve(data);
+                })
+                .catch((err: any) => {
+                    reject(err);
+                });
+        })
+    }
+
+
 }
 

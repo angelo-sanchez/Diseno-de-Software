@@ -22,6 +22,11 @@ router.route('/boards')
 router.route('/boards/:boardId/issues')
 .get(jiraCtrl.getIssuesForBoard);
 
+router.route('/issue/:issueId')
+    .get(jiraCtrl.getIssue);
+
+router.route('/user/issues')
+    .get(jiraCtrl.getIssuesForUser);
 
 router.route('/boards/:boardId')
     .get(jiraCtrl.getBoard);
