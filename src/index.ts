@@ -35,8 +35,6 @@ server.use((req, res, next) => {
 });
 
 
-router.get('/api', function(req, res) {
-    server.listen(PORT, () => {
+server.listen(PORT, () => {
     console.info(`Server listening on port [${PORT}] `);
-    })
-});
+})

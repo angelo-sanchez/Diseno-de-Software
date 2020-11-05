@@ -46,6 +46,9 @@ export class Routes {
         app.options("*", cors(options));
 
         // Routes
+        app.use('/api', function(req: Request, res: Response)  {
+            res.send("API Diseño de Software")
+        });
         app.use('/api/test', TestRouter);
         app.use('/api/actor', ActorRouter);
         app.use('/api/actorSala', ActorSalaRouter);
