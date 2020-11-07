@@ -81,7 +81,14 @@
 					"name": "Find",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
 						"url": {
 							"raw": "{{BASE_URL}}/api/actor",
 							"host": [
@@ -732,6 +739,223 @@
 									"disabled": true
 								}
 							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Jira",
+			"item": [
+				{
+					"name": "Find Issue",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find Boards",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "Wqx2Yl9acvV3wV7k2Cib0897",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "farodriguez@alumnos.exa.unicen.edu.ar",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/jira/boards",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"jira",
+								"boards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Specific Board",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/jira/boards/1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"jira",
+								"boards",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all dashboards",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/jira/dashboards/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"jira",
+								"dashboards",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Issues for Board",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/jira/boards/1/issues",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"jira",
+								"boards",
+								"1",
+								"issues"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Assignable",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/jira/users/5f37c551333edb00438e4210/searchAssignable",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"jira",
+								"users",
+								"5f37c551333edb00438e4210",
+								"searchAssignable"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Issue",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/jira/issue/10011",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"jira",
+								"issue",
+								"10011"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Issues for User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [],
+							"options": {
+								"urlencoded": {}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/jira/user/issues?username=farodriguez@alumnos.exa.unicen.edu.ar",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"jira",
+								"user",
+								"issues"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "farodriguez@alumnos.exa.unicen.edu.ar"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Server",
+			"item": [
+				{
+					"name": "Find Actors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
 						}
 					},
 					"response": []

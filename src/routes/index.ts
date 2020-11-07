@@ -46,9 +46,7 @@ export class Routes {
         app.options("*", cors(options));
 
         // Routes
-        app.use('/api', function(req: Request, res: Response)  {
-            res.send("API Diseño de Software")
-        });
+       
         app.use('/api/test', TestRouter);
         app.use('/api/actor', ActorRouter);
         app.use('/api/actorSala', ActorSalaRouter);
@@ -62,7 +60,9 @@ export class Routes {
         app.use('/api/tarea', TareaRoutes);
         app.use('/api/reunion', ReunionRoutes);
         app.use('/api/jira', JiraRouter);
-        
+        app.use('/api', function(req: Request, res: Response)  {
+            res.send("API Diseño de Software")
+        });
     }
 
      
