@@ -34,10 +34,12 @@ export class ActorSalaController {
     public create(req:Request, res:Response) {
         const data : any = {};
         
-        if (req.body['usuario'])
-            data.name = req.body.usuario;
-        if (req.body['sala'])
-            data.sala = req.body.sala;
+        if (req.body['id'])
+            data.id = req.body.id;
+        if (req.body['entrada'])
+            data.entrada = req.body.entrada;
+        if (req.body['salida'])
+            data.salida = req.body.salida;
         if (req.body['rol'])
             data.rol = req.body.rol;
 

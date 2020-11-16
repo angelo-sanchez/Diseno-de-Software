@@ -15,8 +15,8 @@ export const SalaSchema = new Schema({
     },
 
     actor: [ {
-        type: Schema.Types.ObjectId,
-        ref : 'Actor'
+        id : {type: Schema.Types.ObjectId, ref: 'Actor'}, 
+        rol: {type: Schema.Types.ObjectId, ref: 'Rol'}, 
     }],
 
     password: {

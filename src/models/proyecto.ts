@@ -15,9 +15,14 @@ export const ProyectoSchema = new Schema({
         type: String,
     },
     
-    sala : [{
+    sala : {
         type: Schema.Types.ObjectId,
         ref: 'Sala'
+    },
+    
+    equipo: [ {
+        id : {type: Schema.Types.ObjectId, ref: 'Actor'}, 
+        rol: {type: Schema.Types.ObjectId, ref: 'Rol'}, 
     }],
 
     stateProject: {
