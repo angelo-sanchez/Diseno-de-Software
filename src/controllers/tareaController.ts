@@ -41,7 +41,8 @@ export class TareaController {
 
     public create(req:Request, res:Response) {
         const data : any = {};
-        
+        console.log(req.body)
+        return;
         if (req.body.description) {
             data.description = req.body.description;
         }

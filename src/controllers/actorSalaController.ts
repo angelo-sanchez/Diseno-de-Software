@@ -35,13 +35,15 @@ export class ActorSalaController {
         const data : any = {};
         
         if (req.body['id'])
-            data.id = req.body.id;
+            data.usuario.id = req.body.id;
         if (req.body['entrada'])
-            data.entrada = req.body.entrada;
+            data.usuario.entrada = req.body.entrada;
         if (req.body['salida'])
-            data.salida = req.body.salida;
+            data.usuario.salida = req.body.salida;
         if (req.body['rol'])
-            data.rol = req.body.rol;
+            data.usuario.rol = req.body.rol;
+        if(req.body['sala'])
+        data.sala = req.body.sala
 
         ActorSalaService.create(data)
         .then((data: any) => {

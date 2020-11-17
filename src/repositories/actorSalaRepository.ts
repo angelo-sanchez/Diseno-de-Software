@@ -3,17 +3,18 @@
 import * as mongoose from 'mongoose';
 import { ActorSalaSchema } from './../models/actorSala';
 
-const ActorSalaModel: any = mongoose.model('Actor-Sala', ActorSalaSchema);
+const ActorSalaModel = mongoose.model('Actor-Sala', ActorSalaSchema);
 
 export class ActorSalaRepository {
-    static findAll(query: any){
-        
+    
+    static findAll(query: any) {
+
         return new Promise((resolve: any, reject: any) => {
             ActorSalaModel.find(query)
                 .then((data: any) => {
                     if (data) {
                         resolve(data)
-                    } else 
+                    } else
                         resolve();
                 })
                 .catch((err: any) => {
@@ -25,16 +26,7 @@ export class ActorSalaRepository {
     static create(data: any) {
 
         return new Promise((resolve: any, reject: any) => {
-            const _data: any = {};
-            if (data.usuario)
-                _data.usuario = data.usuario;
-            if (data.sala)
-                _data.sala = data.sala;
-
-            if (data.rol)
-                _data.rol = data.rol;
-
-            const newClient = new ActorSalaModel(_data);
+            const newClient = new ActorSalaModel(data);
             newClient.save()
                 .then((newClient: any) => {
                     if (newClient)
@@ -47,5 +39,15 @@ export class ActorSalaRepository {
                 })
         });
 
+    }
+
+    static async findOne(filter: { "usuario.id": any; sala: any; }) {
+        return ActorSalaModel.findOne(filter).exec()
+        .catch((err)=>{
+            throw {
+                status: err.status || 500,
+                detail: err
+            }
+        });
     }
 }

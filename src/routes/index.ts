@@ -17,6 +17,7 @@ import { config } from '../utils/config';
 import { TestRouter } from './testRouter';
 import { ActorRouter } from './actorRouter';
 import { ProyectoRouter } from './proyectoRouter';
+import { LoginRouter } from './LoginRouter';
 
 export class Routes {
 
@@ -60,6 +61,7 @@ export class Routes {
         app.use('/api/tarea', TareaRoutes);
         app.use('/api/reunion', ReunionRoutes);
         app.use('/api/jira', JiraRouter);
+        app.use('/api/login', LoginRouter);
         app.use('/api', function(req: Request, res: Response)  {
             res.send("API Diseño de Software")
         });
