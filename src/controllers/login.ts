@@ -19,7 +19,7 @@ export class LoginController {
                 + "\tSe espera body: { actor: { user, password }, sala }");
         }
         const actor = {
-            email: req.body.actor.user,
+            nameid: req.body.actor.user,
             password: req.body.actor.password
         };
         const sala: string = req.body.sala;
@@ -37,7 +37,7 @@ export class LoginController {
             if (!authorized || !authorized.usuario || authorized.usuario.length <= 0) {
                 throw {
                     status: 404,
-                    detail: `No existe el usuario ${actor.email} en la sala ${sala}`
+                    detail: `No existe el usuario ${actor.nameid} en la sala ${sala}`
                 }
             }
 

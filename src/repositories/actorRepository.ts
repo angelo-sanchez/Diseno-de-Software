@@ -34,8 +34,10 @@ export class ActorRepository {
                 _data.surname = data.surname;
             if (data.email)
                 _data.email = data.email;
+            if(data.nameid)
+                _data.nameid = data.nameid;
             if (data.password)
-                _data.password = data.password;
+                _data.password = createHash("sha512").update(data.password).digest().toString();
 
             const newClient = new ActorModel(_data);
             newClient.save()
@@ -52,12 +54,22 @@ export class ActorRepository {
 
     }
 
-    static async exists(user: { email: string, password: string }) {
-        let { email, password } = user;
+    static async id_reg(user: {nameid: string}){
+        let nameid = user;
+        return ActorModel.findOne(nameid).exec();
+    }
+
+    static async email_reg(user: {email: string}){
+        let email = user;
+        return ActorModel.findOne(email).exec();
+    }
+
+    static async exists(user: { nameid: string, password: string }) {
+        let { nameid, password } = user;
         // Importante guardar las contraseñas cifradas en la DB.
         // password = createHash("sha512").update(password).digest().toString();
-
-        return ActorModel.findOne({ email, password }).exec();
+        // creo que se guardan cifradas, no se como retornarlas descifradas.
+        return ActorModel.findOne({ nameid, password }).exec();
     }
 }
 

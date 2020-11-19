@@ -25,6 +25,10 @@ export const ActorSchema = new Schema({
         type: String,
         required: true
     },
+    nameid: {
+        type: String,
+        required: true
+    },
 
     createdAt : {
         type: Date,
@@ -49,6 +53,10 @@ ActorSchema.methods.getBasic = function() {
 
     if (this.email) {
         instance.email = this.email;
+    }
+
+    if (this.nameid) {
+        instance.nameid = this.nameid;
     }
 
     if (this.createdAt) {
