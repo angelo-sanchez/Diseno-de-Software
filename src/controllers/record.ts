@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ActorRepository } from "c:/Users/Guido/Diseno-de-Software/src/repositories/actorRepository";
+import { ActorRepository } from "../repositories/actorRepository";
 
 export class recordController {
     public async record(req: Request, res: Response){
@@ -17,13 +17,15 @@ export class recordController {
 
         const actor = {
             firstname: req.body.actor.firstname,
-            surname: req.body.actor.surmane,
+            surname: req.body.actor.surname,
             email: req.body.actor.email,
             nameid: req.body.actor.nameid,
             password: req.body.actor.password,
         };
+
         try {
             let emailreg: any = await ActorRepository.email_reg(actor);
+            console.log({msg: "EMAIL REGISTRADO", emailreg});
             if (emailreg){
                 throw {
                     status: 403,
@@ -39,7 +41,7 @@ export class recordController {
             }
             if  (!emailreg && !nameidreg){
                 ActorRepository.create({
-                    firstname: actor.firstname,
+                    firstName: actor.firstname,
                     surname: actor.surname,
                     password: actor.password,
                     email: actor.email,

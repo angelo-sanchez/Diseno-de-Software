@@ -1,6 +1,6 @@
 'use strict';
 
-import { ActorOficinaRepository } from 'c:/Users/Guido/Diseno-de-Software/src/repositories/actorOficinaRepository'; // como agregar al repositorio
+import { ActorOficinaRepository } from '../repositories/actorOficinaRepository'; // como agregar al repositorio
 
 
 export class ActorOficinaService {
