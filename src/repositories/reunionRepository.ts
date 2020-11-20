@@ -32,6 +32,9 @@ export class ReunionRepository {
             
             if (data.sala)
                 _data.sala = data.sala;
+
+            if (data.oficina)
+                _data.oficina = data.oficina;
             
             if (data.proyecto)
                 _data.proyecto = data.proyecto;

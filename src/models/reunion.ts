@@ -16,6 +16,11 @@ export const ReunionSchema = new Schema({
         ref: 'Sala'
     }],
 
+    oficina: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Oficina'
+    }],
+
     proyecto : [ {
         type: Schema.Types.ObjectId,
         ref: 'Proyecto'
