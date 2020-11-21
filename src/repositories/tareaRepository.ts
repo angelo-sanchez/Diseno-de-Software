@@ -4,7 +4,7 @@
 import * as mongoose from 'mongoose';
 import { TareaSchema } from './../models/tarea';
 
-const TareaModel: any = mongoose.model('Rol', TareaSchema);
+const TareaModel: any = mongoose.model('Tarea', TareaSchema);
 
 export class TareaRepository {
     static findAll(query: any){
