@@ -41,13 +41,7 @@ export class ActorSalaRepository {
 
     }
 
-    static async findOne(filter: { "usuario.id": any; sala: any; }) {
-        return ActorSalaModel.findOne(filter).exec()
-        .catch((err)=>{
-            throw {
-                status: err.status || 500,
-                detail: err
-            }
-        });
+    static findOne(filter: { "usuario.id": any; sala: any; }) {
+        return ActorSalaModel.findOne(filter).exec();
     }
 }
