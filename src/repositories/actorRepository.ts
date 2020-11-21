@@ -54,21 +54,22 @@ export class ActorRepository {
 
     }
 
-    static async id_reg(user: {nameid: string}){
-        let nameid = user;
-        return ActorModel.findOne(nameid).exec();
+    static id_reg(user: {nameid: string}){
+        let nameid = user.nameid;
+        // El problema estaba en que estabamos buscando pa<sándole todo el objeto y no coincidian "firstname" con "firstName"
+        // Ahora sólo buscamos pasándole el objeto {nameid : user.nameid}
+        return ActorModel.findOne({nameid}).exec();
     }
 
-    static async email_reg(user: {email: string}){
-        let email = user;
-        return ActorModel.findOne(email).exec();
+    static email_reg(user: {email: string}){
+        let email = user.email;
+        return ActorModel.findOne({email}).exec();
     }
 
-    static async exists(user: { nameid: string, password: string }) {
+    static exists(user: { nameid: string, password: string }) {
         let { nameid, password } = user;
         // Importante guardar las contraseñas cifradas en la DB.
-        // password = createHash("sha512").update(password).digest().toString();
-        // creo que se guardan cifradas, no se como retornarlas descifradas.
+        password = createHash("sha512").update(password).digest().toString();
         return ActorModel.findOne({ nameid, password }).exec();
     }
 }
