@@ -8,6 +8,9 @@ import { resolve } from 'path';
 const ActorModel = mongoose.model('Actor', ActorSchema);
 
 export class ActorRepository {
+    static findActorBy(data: any) {
+        return ActorModel.findOne(data).exec();
+    }
     static findAll(query: any) {
         return new Promise((resolve: any, reject: any) => {
             ActorModel.find(query)
@@ -34,7 +37,7 @@ export class ActorRepository {
                 _data.surname = data.surname;
             if (data.email)
                 _data.email = data.email;
-            if(data.nameid)
+            if (data.nameid)
                 _data.nameid = data.nameid;
             if (data.password)
                 _data.password = createHash("sha512").update(data.password).digest().toString();
@@ -54,16 +57,16 @@ export class ActorRepository {
 
     }
 
-    static id_reg(user: {nameid: string}){
+    static id_reg(user: { nameid: string }) {
         let nameid = user.nameid;
         // El problema estaba en que estabamos buscando pa<sándole todo el objeto y no coincidian "firstname" con "firstName"
         // Ahora sólo buscamos pasándole el objeto {nameid : user.nameid}
-        return ActorModel.findOne({nameid}).exec();
+        return ActorModel.findOne({ nameid }).exec();
     }
 
-    static email_reg(user: {email: string}){
+    static email_reg(user: { email: string }) {
         let email = user.email;
-        return ActorModel.findOne({email}).exec();
+        return ActorModel.findOne({ email }).exec();
     }
 
     static exists(user: { nameid: string, password: string }) {

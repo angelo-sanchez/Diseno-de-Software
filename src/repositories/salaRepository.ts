@@ -1,57 +1,51 @@
 
 'use strict'
 
-import * as mongoose from 'mongoose';
+import { createHash } from 'crypto';
+import mongoose from 'mongoose';
 import { SalaSchema } from './../models/sala';
 
-const SalaModel: any = mongoose.model('Sala', SalaSchema);
+const SalaModel = mongoose.model('Sala', SalaSchema);
 
 export class SalaRepository {
 
-    static findAll(query: any){
-        return new Promise((resolve: any, reject: any) => {
-            SalaModel.find(query)
-                .then((data: any) => {
-                    if (data) {
-                        resolve(data)
-                    } else 
-                        resolve();
-                })
-                .catch((err: any) => {
-                    console.error(err);
-                })
-        })
+    static findAll(query: any) {
+        return SalaModel.find(query).exec();
     }
 
     static create(data: any) {
+        const _data: any = {};
 
-        return new Promise((resolve: any, reject: any) => {
-            const _data: any = {};
-            
-            if (data.nameSala)
-                _data.nameSala = data.nameSala;
-            if (data.members_number)
-                _data.members_number = data.members_number;
-            if (data.actor)
-                _data.actor = data.actor;
-            if (data.password)
-                _data.password = data.password;
-            if (data.metodologia)
-                _data.metodologia = data.metodologia;
-                
-            const newClient = new SalaModel(_data);
-            newClient.save()
-                .then((newClient: any) => {
-                    if (newClient)
-                        resolve(newClient.getBasic());
-                    else
-                        resolve();
-                })
-                .catch((err: any) => {
-                    reject({ msg: ('SALA.ERROR_CREATE'), error: err })
-                })
-        });
+        _data.metodologia = data.metodologia;
+        _data.name = data.nameSala;
+        _data.actores = [];
+        if (data.actores) {
+            for (const { id, rol } of data.actores) {
+                if (id && rol) {
+                    _data.actores.push({ id, rol });
+                }
+            }
+        }
+        if (data.password) { // La contraseña de una sala es opcional.
+            _data.password = createHash("SHA512").update(data.password).digest().toString();
+        }
 
+        return new SalaModel(_data).save();
     }
 
+    static addActorToSala(data: { salaid: string, userid: string, rolid: string, password?: string }) {
+        let filter: any = { sala: data.salaid };
+        if (data.password) {
+            filter.password = createHash("SHA512").update(data.password).digest().toString();
+        }
+        let update = {
+            $push: { // Insertar en un arreglo
+                actores: { // El arreglo que se va a modificar, seguido del objeto que se va a insertar
+                    id: data.userid,
+                    rol: data.rolid
+                }
+            }
+        };
+        return SalaModel.updateOne(filter, update).exec();
+    }
 }

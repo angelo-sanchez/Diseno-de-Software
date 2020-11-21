@@ -8,19 +8,7 @@ const ActorSalaModel = mongoose.model('Actor-Sala', ActorSalaSchema);
 export class ActorSalaRepository {
     
     static findAll(query: any) {
-
-        return new Promise((resolve: any, reject: any) => {
-            ActorSalaModel.find(query)
-                .then((data: any) => {
-                    if (data) {
-                        resolve(data)
-                    } else
-                        resolve();
-                })
-                .catch((err: any) => {
-                    console.error(err);
-                })
-        })
+        return ActorSalaModel.find(query).exec();
     }
 
     static create(data: any) {
@@ -44,4 +32,5 @@ export class ActorSalaRepository {
     static findOne(filter: { "usuario.id": any; sala: any; }) {
         return ActorSalaModel.findOne(filter).exec();
     }
+
 }

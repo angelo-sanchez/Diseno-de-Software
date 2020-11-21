@@ -7,6 +7,9 @@ import { RolSchema } from './../models/rol';
 const RolModel: any = mongoose.model('Rol', RolSchema);
 
 export class RolRepository {
+    static findRolByNombre(nombre:string) {
+        return RolModel.findOne({nombre});
+    }
     static findAll(query: any){
         
         return new Promise((resolve: any, reject: any) => {

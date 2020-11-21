@@ -5,58 +5,52 @@ import * as mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 export const SalaSchema = new Schema({
-
-    nameSala : {
+    name: {
         type: String
     },
-
-    members_number : {
-        type: Number
-    },
-
-    actor: [ {
-        id : {type: Schema.Types.ObjectId, ref: 'Actor'}, 
-        rol: {type: Schema.Types.ObjectId, ref: 'Rol'}, 
+    actores: [{
+        id: { type: Schema.Types.ObjectId, ref: 'Actor' },
+        rol: { type: Schema.Types.ObjectId, ref: 'Rol' },
     }],
-
     password: {
         type: String,
         required: false
     },
-
     metodologia: [{
         type: Schema.Types.ObjectId,
         ref: 'Metodologia'
     }]
-
 })
-   
-   
-   
+
+
+
 SalaSchema.set('collection', 'Sala');
 
-SalaSchema.methods.getBasic = function() {
+SalaSchema.methods.membersNumber = function () {
+    this.actor.length;
+}
 
-    const instance: any = {
-        id: this._id.toString()
+SalaSchema.methods.getBasic = function () {
+
+    let instance: {
+        actores: any[],
+        id: string,
+        name: string,
+        metodologia: string,
+        members_number: number
+    };
+
+    instance.id = this._id.toString();
+    for (const i in this.actores) {
+        instance.actores.push({
+            id: this.actores[i].id.getBasic(),
+            rol: this.actores[i].rol.getBasic()
+        })
     }
-
-    if (this.members_number) {
-        instance.nameSala = this.members_number;
-    }
-
-    if (this.actor) {
-        if (this.actor.getBasic)
-            instance.actor = this.actor.getBasic();
-    }
-
-    if (this.nameSala) 
-        instance.nameSala = this.nameSala;
-    
-    if (this.metodologia)
-        if (this.metodologia.getBasic){
-            instance.metologia = this.metodologia.getBasic();
-        }
-
+    instance.name = this.name;
+    instance.metodologia = null;
+    if (this.metologia && this.metodologia.getBasic)
+        instance.metodologia = this.metodologia.getBasic();
+    instance.members_number = this.membersNumber();
     return instance;
 }
