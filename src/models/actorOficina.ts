@@ -7,16 +7,21 @@ const Schema = mongoose.Schema;
 
 export const ActorOficinaSchema = new Schema({
 
-    usuario : [{
-        id : {type: Schema.Types.ObjectId, ref: 'Actor'}, 
-        entrada:{ type: Date,
+    usuario : {
+        type: String,
+        required: true
+    },
+      
+    entrada:{ type: Date,
                   required: true, },
-        salida: { type: Date,
+    
+    salida: { type: Date,
                  required: false, },
-    }], 
 
-    sala: {type: Schema.Types.ObjectId, ref: 'Sala' },
-
+    oficina: {
+        type: String,
+        required: true
+    },
 })
 
 ActorOficinaSchema.set('collection', 'Actor-Oficina');
@@ -27,6 +32,10 @@ ActorOficinaSchema.methods.getBasic = function() {
         id: this._id.toString()
     }
 
+    if(this.usuario)
+        if(this.usuario.getBasic)
+            instance.usuario = this.usuario.getBasic();
+    
 
     if (this.entrada) 
         if (this.entrada.getBasic)
@@ -34,8 +43,11 @@ ActorOficinaSchema.methods.getBasic = function() {
 
     if (this.salida) 
         if (this.salida.getBasic)
-            instance.sala = this.salida.getBasic();
+            instance.oficina = this.salida.getBasic();
     
+    if(this.oficina)
+        if(this.oficina.getBasic)
+            instance.oficina = this.oficina.getBasic();
     
     return instance;
 }

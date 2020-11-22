@@ -28,9 +28,9 @@ export class ActorOficinaRepository {
             const _data: any = {};
             if (data.usuario)
                 _data.usuario = data.usuario;
-            if (data.sala)
-                _data.sala = data.sala;
-
+            if (data.oficina)
+                _data.oficina = data.oficina;
+            _data.entrada = Date.now();
             const newClient = new ActorOficinaModel(_data);
             newClient.save()
                 .then((newClient: any) => {
@@ -40,9 +40,12 @@ export class ActorOficinaRepository {
                         resolve();
                 })
                 .catch((err: any) => {
-                    reject({ msg: ('ACTOR.ERROR_CREATE'), error: err })
+                    reject({ msg: ('ACTOROFICINA.ERROR_CREATE'), error: err })
                 })
         });
 
+    }
+    static findOne(filter: { usuario: string, oficina: string, salida: Date }) {
+        return ActorOficinaModel.findOne(filter).exec();
     }
 }

@@ -9,6 +9,7 @@ import { OficinaRouter } from './oficinaRouter';
 import { MetodologiaRouter } from './metodologiaRouter';
 import { SalaRouter } from './salaRouter';
 import { ActorSalaRouter } from './actorSalaRouter';
+import { ActorOficinaRouter } from './actorOficinaRouter';
 import cors from 'cors';
 import express from 'express';
 import { Request, Response, NextFunction } from 'express';
@@ -66,6 +67,7 @@ export class Routes {
         app.use('/api/login', LoginRouter);
         app.use('/api/logout', LogoutRouter);
         app.use('/api/record', recordRouter);
+        app.use('/api/actorOficina', ActorOficinaRouter);
         app.use('/api', function(req: Request, res: Response)  {
             res.send("API Diseño de Software")
         });
