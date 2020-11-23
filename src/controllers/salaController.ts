@@ -80,12 +80,12 @@ export class SalaController {
                 status: 404,
                 detail: `No existe un rol con el nombre ${req.body.rol}`
             };
-
-            return SalaRepository.addActorToSala({
+            const sala = await SalaRepository.addActorToSala({
                 salaid: req.body.sala,
                 userid: actor._id,
                 rolid: rol._id
             });
+            return res.status(200).json({sala});
         } catch (error) {
             return res.status(error.status || 500).json({ error: error.detail || error })
         }

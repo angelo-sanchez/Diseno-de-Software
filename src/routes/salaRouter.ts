@@ -13,4 +13,7 @@ router.route('')
 router.route('')
     .post(salaCtrl.create);
 
+router.route('/addActor')
+    .put(salaCtrl.addActor);
+
 export const SalaRouter: Router = router;

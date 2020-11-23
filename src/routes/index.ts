@@ -20,6 +20,7 @@ import { ActorRouter } from './actorRouter';
 import { ProyectoRouter } from './proyectoRouter';
 import { LoginRouter } from './LoginRouter';
 import { LogoutRouter } from './logoutRouter';
+import { RolRouter } from "./RolRouter";
 import { recordRouter } from './recordRouter';
 
 export class Routes {
@@ -68,6 +69,8 @@ export class Routes {
         app.use('/api/logout', LogoutRouter);
         app.use('/api/record', recordRouter);
         app.use('/api/actorOficina', ActorOficinaRouter);
+        app.use('/api/rol', RolRouter);
+        
         app.use('/api', function(req: Request, res: Response)  {
             res.send("API Diseño de Software")
         });

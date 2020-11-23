@@ -29,7 +29,7 @@ export class ActorSalaRepository {
 
     }
 
-    static findOne(filter: { "usuario.id": any; sala: any; }) {
+    static findOne(filter: { usuario: string; sala: string; }) {
         return ActorSalaModel.findOne(filter).exec();
     }
 

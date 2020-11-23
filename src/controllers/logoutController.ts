@@ -13,7 +13,7 @@ export class LogoutController {
                 }
             }
             const { userid, salaid } = req.body;
-            const actorSala = await ActorSalaRepository.findOne({ "usuario.id": userid, sala: salaid });
+            const actorSala = await ActorSalaRepository.findOne({ usuario: userid, sala: salaid });
             if (!actorSala) throw { // No econtró el actor, entonces responde con el error
                 status: 404,
                 detail: `Error: El usuario ${userid} no existe en la sala ${salaid}`

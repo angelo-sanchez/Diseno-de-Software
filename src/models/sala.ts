@@ -27,7 +27,7 @@ export const SalaSchema = new Schema({
 SalaSchema.set('collection', 'Sala');
 
 SalaSchema.methods.membersNumber = function () {
-    this.actor.length;
+    this.actores.length;
 }
 
 SalaSchema.methods.getBasic = function () {

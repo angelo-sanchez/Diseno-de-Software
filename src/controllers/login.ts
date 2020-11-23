@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { ActorSalaRepository } from "../repositories/actorSalaRepository";
 import { ActorRepository } from "../repositories/actorRepository";
+import { SalaRepository } from "../repositories/salaRepository";
 
 export class LoginController {
     /**
@@ -8,7 +9,6 @@ export class LoginController {
      * bodyParams: {actor: {username, password}, sala: {id}}
      */
     public async login(req: Request, res: Response) {
-        console.log(req.body)
         if (!req.body.actor || !req.body.sala || !req.body.actor.user || !req.body.actor.password) {
             res.status(400).json({
                 error: "Error: La consulta no contiene los parámetros necesarios\n"
@@ -33,21 +33,18 @@ export class LoginController {
                 };
             }
 
-            let authorized: any = await ActorSalaRepository.findOne({ "usuario.id": authenticated._id, sala });
-            if (!authorized || !authorized.usuario || authorized.usuario.length <= 0) {
+            let rol: any = await SalaRepository.getActorRol(sala, authenticated.id);
+            if (!rol) {
                 throw {
                     status: 404,
                     detail: `No existe el usuario ${actor.nameid} en la sala ${sala}`
                 }
             }
-
-            let ingreso = Date.now();
+            let entrada = Date.now();
             ActorSalaRepository.create({
-                "usuario.$[user]": {
-                    id: authorized.usuario[0].id,
-                    rol: authorized.usuario[0].rol,
-                    entrada: ingreso
-                },
+                usuario: authenticated.id,
+                rol,
+                entrada,
                 sala,
             }).then(value => {
                 res.status(200).json({ logged_in: true, userId: authenticated._id });

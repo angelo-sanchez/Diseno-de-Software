@@ -3,7 +3,7 @@
 import { Request, Response } from 'express';
 import { RolService } from '../services/rolService';
 
-export class ReunionActorController {
+export class RolController {
 
     public findAll(req: Request, res: Response) {
 
@@ -34,7 +34,6 @@ export class ReunionActorController {
 
     public create(req:Request, res:Response) {
         const data : any = {};
-        
         if (req.body.nombre) {
             data.nombre = req.body.nombre;
         }

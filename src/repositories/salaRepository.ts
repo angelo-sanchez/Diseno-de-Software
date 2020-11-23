@@ -9,6 +9,16 @@ const SalaModel = mongoose.model('Sala', SalaSchema);
 
 export class SalaRepository {
 
+    static async getActorRol(sala: string, actor_id: string) {
+        let _sala: any = await SalaModel.findById(sala).exec();
+        if (!sala) throw { status: 404, detail: "No existe la sala" }
+
+        let actor: { id: any, rol: any } = _sala.actores.find((value: any) => {
+            return value.id.toString() == actor_id;
+        })
+        if (actor) return actor.rol;
+        return null;
+    }
     static findAll(query: any) {
         return SalaModel.find(query).exec();
     }
@@ -33,19 +43,26 @@ export class SalaRepository {
         return new SalaModel(_data).save();
     }
 
-    static addActorToSala(data: { salaid: string, userid: string, rolid: string, password?: string }) {
-        let filter: any = { sala: data.salaid };
+    static async addActorToSala(data: { salaid: string, userid: string, rolid: string, password?: string }) {
+        let filter: any = { _id: data.salaid };
         if (data.password) {
             filter.password = createHash("SHA512").update(data.password).digest().toString();
         }
-        let update = {
-            $push: { // Insertar en un arreglo
-                actores: { // El arreglo que se va a modificar, seguido del objeto que se va a insertar
-                    id: data.userid,
-                    rol: data.rolid
-                }
+
+        let sala: any = await SalaModel.findOne(filter).exec();
+        let existe = sala.actores.find((value: any) => {
+            return value.id.toString() == data.userid
+        });
+        if (existe)
+            throw {
+                status: 409,
+                detail: "Este usuario ya tiene un rol asignado en la sala"
             }
-        };
-        return SalaModel.updateOne(filter, update).exec();
+        sala.actores.push({
+            id: data.userid,
+            rol: data.rolid
+        });
+
+        return await sala.save();
     }
 }
