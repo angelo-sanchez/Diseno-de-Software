@@ -4,7 +4,7 @@ dotenv.config({ path: `${__dirname}/../../.env` });
 
 export const config = {
     NODE_ENV: process.env.NODE_ENV,
-    PORT: (process.env.port) ? (process.env.port) : 3000,
+    PORT: process.env.PORT || 3000,
     JWT_SECRET: process.env.JWT_SECRET,
     BASE_URL: process.env.BASE_URL,
     MONGO_DB: {
