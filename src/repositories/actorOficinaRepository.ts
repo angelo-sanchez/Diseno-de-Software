@@ -45,6 +45,7 @@ export class ActorOficinaRepository {
         });
 
     }
+
     static findOne(filter: { usuario: string, oficina: string, salida: Date }) {
         return ActorOficinaModel.findOne(filter).exec();
     }

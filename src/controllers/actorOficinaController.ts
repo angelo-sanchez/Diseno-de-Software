@@ -68,7 +68,41 @@ export class ActorOficinaController {
                 actorOficina.save();
             return res.status(200).json({out:true});
         }catch (error) {
-            return res.status(error.status || 500).json({ error: error.detail || error });
+             return res.status(error.status || 500).json({ error: error.detail || error });
+             }
+    }
+
+    public async historialActor(req: Request, res: Response){
+        try {
+            if(!(req.body.usuario))
+            throw {
+                status: 400,
+                detail: "Error: La consulta no contiene los parámetros necesarios\n"
+                    + "\tSe espera body: { nameid }"
+            }
+            const { usuario } = req.body;
+            const actorOficina = await ActorOficinaRepository.findAll({usuario});
+                
+            return res.status(200).json({out:actorOficina});
+    }catch (error) {
+        return res.status(error.status || 500).json({ error: error.detail || error });
+        }
+    }
+
+    public async historialOficina(req: Request, res: Response){
+        try {
+            if(!(req.body.oficina))
+            throw {
+                status: 400,
+                detail: "Error: La consulta no contiene los parámetros necesarios\n"
+                    + "\tSe espera body: { oficina }"
+            }
+            const { oficina } = req.body;
+            const actorOficina = await ActorOficinaRepository.findAll( {oficina} );
+                
+            return res.status(200).json({out:actorOficina});
+    }catch (error) {
+        return res.status(error.status || 500).json({ error: error.detail || error });
         }
     }
 }

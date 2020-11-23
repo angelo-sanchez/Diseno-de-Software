@@ -15,4 +15,10 @@ router.route('')
 router.route('/salir')
     .put(actorOficinaCtrl.salir);
 
+router.route('/historialActor')
+    .get(actorOficinaCtrl.historialActor);
+
+router.route('/historialOficina')
+    .get(actorOficinaCtrl.historialOficina);
+
 export const ActorOficinaRouter: Router = router;
