@@ -22,6 +22,7 @@ import { LoginRouter } from './LoginRouter';
 import { LogoutRouter } from './logoutRouter';
 import { RolRouter } from "./RolRouter";
 import { recordRouter } from './recordRouter';
+import { UserStoryRouter } from './userStoryRouter';
 
 export class Routes {
 
@@ -51,7 +52,7 @@ export class Routes {
         app.options("*", cors(options));
 
         // Routes
-       
+
         app.use('/api/test', TestRouter);
         app.use('/api/actor', ActorRouter);
         app.use('/api/actorSala', ActorSalaRouter);
@@ -70,12 +71,13 @@ export class Routes {
         app.use('/api/record', recordRouter);
         app.use('/api/actorOficina', ActorOficinaRouter);
         app.use('/api/rol', RolRouter);
-        
-        app.use('/api', function(req: Request, res: Response)  {
+        app.use('/api/userStory', UserStoryRouter);
+
+        app.use('/api', function (req: Request, res: Response) {
             res.send("API Diseño de Software")
         });
     }
 
-     
+
 
 }

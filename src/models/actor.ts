@@ -23,10 +23,12 @@ export const ActorSchema = new Schema({
     
     email: {
         type: String,
+        unique: true,
         required: true
     },
     nameid: {
         type: String,
+        unique: true,
         required: true
     },
 
