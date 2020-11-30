@@ -6,15 +6,15 @@ const Schema = mongoose.Schema;
 
 export const ReunionActor = new Schema({
 
-    reunion: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Reunion'
-    }],
+    reunion: {
+        type: String,
+        required: true
+    },
     
-    actor : [{
-        type: Schema.Types.ObjectId,
-        ref: 'Actor'
-    }],
+    actor : {
+        type: String,
+        required: true
+    },
 
 })
 
@@ -27,12 +27,10 @@ ReunionActor.methods.getBasic = function() {
     }
 
     if (this.reunion) 
-        if (this.reunion.getBasic)
-            instance.reunion = this.reunion.getBasic();
+        instance.reunion = this.reunion.getBasic();
 
     if (this.actor) 
-        if (this.actor.getBasic)
-            instance.actor = this.actor.getBasic();
+         instance.actor = this.actor.getBasic();
 
     return instance;
 }

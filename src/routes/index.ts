@@ -4,7 +4,6 @@ import { TareaRoutes } from './tareaRouter';
 import { TareaActorRoutes } from './tareaActorRoutes';
 import { SalaOficinaRoutes } from './salaOficinaRouter';
 import { ReunionActorRoutes } from './reunionActorRouter';
-import { ReunionActor } from './../models/reunionActor';
 import { OficinaRouter } from './oficinaRouter';
 import { MetodologiaRouter } from './metodologiaRouter';
 import { SalaRouter } from './salaRouter';

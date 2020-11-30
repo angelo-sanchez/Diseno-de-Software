@@ -13,4 +13,7 @@ router.route('')
 router.route('')
     .post(reunionCtrl.create);
 
+router.route('/setDialogo')
+    .put(reunionCtrl.setDialogo);
+
 export const ReunionRoutes: Router = router;

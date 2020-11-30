@@ -3,7 +3,7 @@
 import * as mongoose from 'mongoose';
 import { ReunionSchema } from './../models/reunion';
 
-const ReunionModel: any = mongoose.model('Reunion', ReunionSchema);
+const ReunionModel: any = mongoose.model('Reunión', ReunionSchema);
 
 export class ReunionRepository {
     static findAll(query: any){
@@ -26,24 +26,19 @@ export class ReunionRepository {
 
         return new Promise((resolve: any, reject: any) => {
             const _data: any = {};
+
+            if(data.nombreReunion)
+                _data.nombreReunion = data.nombreReunion;
             
             if (data.actorCreator)
                 _data.actorCreator = data.actorCreator;
-            
-            if (data.sala)
-                _data.sala = data.sala;
 
-            if (data.oficina)
-                _data.oficina = data.oficina;
-            
-            if (data.proyecto)
-                _data.proyecto = data.proyecto;
-
-            if (data.fecha_inicio)
+            if (data.fecha_inicio){
                 _data.fecha_inicio = data.fecha_inicio;
+            }
 
-            if (data.fecha_fin)
-                _data.fecha_fin = data.fecha_fin;
+            if (data.duracion)
+                _data.duracion = data.duracion;
 
             const newClient = new ReunionModel(_data);
             newClient.save()
@@ -54,9 +49,12 @@ export class ReunionRepository {
                         resolve();
                 })
                 .catch((err: any) => {
-                    reject({ msg: ('REUNION_CREATE'), error: err })
+                    reject({ msg: ('REUNION_CREATE_Repository'), error: err })
                 })
         });
 
     }
-}
+
+    static findOne(filter: { nombreReunion: string }) {
+        return ReunionModel.findOne(filter).exec();
+    }}

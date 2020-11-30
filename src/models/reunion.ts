@@ -6,37 +6,35 @@ const Schema = mongoose.Schema;
 
 export const ReunionSchema = new Schema({
 
-    actorCreator : [{
-        type: Schema.Types.ObjectId,
-        ref: 'Actor'
-    }],
-    
-    sala : [{
-        type: Schema.Types.ObjectId,
-        ref: 'Sala'
-    }],
-
-    oficina: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Oficina'
-    }],
-
-    proyecto : [ {
-        type: Schema.Types.ObjectId,
-        ref: 'Proyecto'
-    }],
-
-    fecha_inicio: {
-        type: Date
+    nombreReunion: {
+        type: String,
+        required: true
     },
 
-    fecha_fin: {
-        type: Date
+    actorCreator : {
+        type: String,
+        required: true
+    },
+
+    dialogo: {
+        type: String,
+        required: false
+    },
+
+
+    fecha_inicio: {
+        type: Date,
+        required: true
+    },
+
+    duracion: {
+        type: Number,
+       required: true
     }
 
 
 })
-ReunionSchema.set('collection', 'Reunion');
+ReunionSchema.set('collection', 'Reunión');
 
 ReunionSchema.methods.getBasic = function() {
     
@@ -44,23 +42,20 @@ ReunionSchema.methods.getBasic = function() {
         id: this._id.toString()
     }
 
-    if (this.actorCreator) 
-        if (this.actorCreator.getBasic)
-            instance.actorCreator = this.actorCreator.getBasic();
+    if (this.nombreReunion)
+        instance.nombreReunion = this.nombreReunion.getBasic();
 
-    if (this.sala) 
-        if (this.sala.getBasic)
-            instance.sala = this.sala.getBasic();
-    
-    if (this.proyecto) 
-        if (this.proyecto.getBasic)
-            instance.proyecto = this.proyecto.getBasic();
+    if (this.actorCreator)
+        instance.actorCreator = this.actorCreator.getBasic();
+
+    if(this.dialogo)
+        instance.dialogo = this.dialogo.getBasic();
     
     if (this.fecha_inicio)
-        instance.fecha_inicio = this.fecha_inicio;
+        instance.fecha_inicio = this.fecha_inicio.getBasic();
     
-    if (this.fecha_fin)
-        instance.fecha_fin = this.fecha_fin;
+    if (this.duracion)
+        instance.duracion = this.duracion.getBasic();
 
     return instance;
 }

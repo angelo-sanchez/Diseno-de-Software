@@ -57,7 +57,7 @@ export class UserStoryActorController {
                 userStoryActor = await UserStoryActorRepository.create({
                     user_story: req.body.user_story,
                     actor: actor._id,
-                    tiempoTrabajo: [tiempoTrabajo];
+                    tiempoTrabajo: [tiempoTrabajo]
                 });
             }
             return res.status(200).json(userStoryActor.getBasic())

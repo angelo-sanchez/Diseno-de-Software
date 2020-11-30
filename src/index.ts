@@ -5,6 +5,7 @@ import { config } from './utils/config';
 
 import bodyParser from "body-parser";
 const PORT = Number(config.PORT || 3000);
+process.env.TZ = 'America/Argentina/Buenos_Aires';
 const router: Router = Router();
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
