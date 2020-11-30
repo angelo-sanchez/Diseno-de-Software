@@ -5,8 +5,11 @@ const router = Router();
 
 const ctrller = new UserStoryActorController();
 router.route("/tiempoLectura")
-    .get(ctrller.getTiempoLectura);
-router.route("/tiempoLectura")
+    .get(ctrller.getTiempoLectura)
     .post(ctrller.addTiempoLectura);
-
+router.route("/tiempoTrabajoTotal")
+    .get(ctrller.getTiempoTotalTrabajo);
+router.route("/tiempoTrabajo")
+    .get(ctrller.getTiempoTrabajo)
+    .post(ctrller.addTiempoTrabajo);
 export const UserStoryRouter = router;

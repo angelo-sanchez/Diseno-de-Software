@@ -5,14 +5,8 @@ import { ActorRepository } from "./actorRepository";
 let Model = model("UserStory-Actor", UserStoryActorSchema);
 
 export class UserStoryActorRepository {
-    public static async create(data: { user_story: any, actor: any, tiempoLectura?: number, tiempoTrabajo?: number }) {
-        const tTrabajo = [];
-        if (data.tiempoTrabajo && data.tiempoTrabajo > 0) {
-            tTrabajo.push({
-                fecha: Date.now(),
-                tiempo: data.tiempoTrabajo
-            })
-        }
+    public static async create(data: { user_story: any, actor: any, tiempoLectura?: number, tiempoTrabajo?: any[] }) {
+        const tTrabajo: any[] = data.tiempoTrabajo || [];
         const { user_story, actor } = data;
         const _new = new Model({
             user_story,
@@ -34,6 +28,12 @@ export class UserStoryActorRepository {
             .match(filter) // Filtra para que los que cumplen con el filtro pasen a la siguiente etapa
             .group({ _id: "$actor", tiempoLectura: { $sum: "$tiempoLectura" } }) // Agrupa por actor y suma por los tiempoLectura 
             .exec()
+    }
+    public static async getTiempoTotalTrabajo(filter: any) {
+        return Model.aggregate()
+            .match(filter)
+            .group({ _id: "$actor", tiempoTrabajo: { $sum: "$tiempoTrabajo.tiempo" } })
+            .exec();
     }
     /**
      * Este método se puede usar tanto para crear por primera vez un registro UserStory-Actor o actualizar uno
