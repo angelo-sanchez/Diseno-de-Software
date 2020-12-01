@@ -13,4 +13,10 @@ router.route('')
 router.route('')
     .post(reunionController.create);
 
+router.route('/setValue')
+    .put(reunionController.setValue);
+
+router.route('/getActoresReunion')
+    .get(reunionController.getActoresReunion);
+
 export const ReunionActorRoutes: Router = router;

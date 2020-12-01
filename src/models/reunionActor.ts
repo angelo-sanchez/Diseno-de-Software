@@ -16,6 +16,16 @@ export const ReunionActor = new Schema({
         required: true
     },
 
+    ingreso: {
+        type: Date,
+        required: true
+    },
+
+    value: {
+        type: Number,
+        required: false
+    }
+
 })
 
 ReunionActor.set('collection', 'Reunion-Actor');
@@ -31,6 +41,12 @@ ReunionActor.methods.getBasic = function() {
 
     if (this.actor) 
          instance.actor = this.actor.getBasic();
+
+    if(this.ingreso)
+        instance.ingreso = this.ingreso.getBasic();
+
+    if(this.value)
+        instance.value = this.value.getBasic();
 
     return instance;
 }

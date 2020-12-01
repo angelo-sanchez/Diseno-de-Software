@@ -33,6 +33,7 @@ export class ReunionActorRepository {
             if (data.actor)
                 _data.actor = data.actor;
 
+            _data.ingreso = Date.now();
             const newClient = new ReunionActorModel(_data);
             newClient.save()
                 .then((newClient: any) => {
@@ -46,5 +47,8 @@ export class ReunionActorRepository {
                 })
         });
 
+    }
+    static findOne(filter: { actor: string, reunion: string, valor: Number }) {
+        return ReunionActorModel.findOne(filter).exec();
     }
 }
