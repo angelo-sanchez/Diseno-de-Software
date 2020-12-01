@@ -85,7 +85,7 @@ export class ReunionActorController {
                     + "\tSe espera body: { nombreReunion }"
             }
             const {nombreReunion} = req.body;
-            const dbResults: any = await ReunionActorRepository.findAll(nombreReunion);
+            const dbResults: any = await ReunionActorRepository.findAll({reunion: nombreReunion});
             const results: any = {
                 nombre: nombreReunion,
                 items: []
