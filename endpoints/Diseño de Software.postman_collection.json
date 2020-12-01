@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "42a99aae-2d44-4fd3-9d41-ed7fc9327666",
+		"_postman_id": "de84f694-cf60-47f7-b4f3-3d6208761b99",
 		"name": "Diseño de Software",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -57,7 +57,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"Facundo\",\r\n    \"surname\": \"Rodriguez\",\r\n    \"email\": \"test@test\",\r\n    \"password\": \"123\"\r\n}",
+							"raw": "\r\n{\r\n  \"actor\": {  \r\n    \"firstname\":\"Facundo\",\r\n    \"surname\":\"Rodriguez\",\r\n    \"email\":\"test2@test\",\r\n    \"nameid\":\"guido\",\r\n    \"password\":\"123\"\r\n  }\r\n}  \r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -65,13 +65,16 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/api/actor",
+							"raw": "https://diseno2020.herokuapp.com/api/record",
+							"protocol": "https",
 							"host": [
-								"{{BASE_URL}}"
+								"diseno2020",
+								"herokuapp",
+								"com"
 							],
 							"path": [
 								"api",
-								"actor"
+								"record"
 							]
 						}
 					},
@@ -436,7 +439,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"reunion\": \"5f9d54b5c893c11b3cd6f599\",\r\n    \"actor\": \"5f9d4b6175bbba1ea0f29ae1\"\r\n}",
+							"raw": "{\r\n    \"reunion\": \"prueba2\",\r\n    \"actor\": \"Joaco\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -485,6 +488,65 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "setValue",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"actor\": \"Joaco\",\r\n    \"reunion\": \"prueba2\",\r\n    \"value\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/reunionActor/setValue",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"reunionActor",
+								"setValue"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getActoresReunion",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombreReunion\": \"prueba2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/reunionActor/getActoresReunion",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"reunionActor",
+								"getActoresReunion"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -499,7 +561,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"actorCreator\": \"5f9d4b6175bbba1ea0f29ae1\",\r\n    \"sala\": \"5f9d4de60be3b62b2c70a5a1\",\r\n    \"proyecto\": \"5f9d51f4f084ec2564e44e9b\",\r\n    \"fecha_inicio\": \"01012020\",\r\n    \"fecha_fin\" : \"10012020\"\r\n}",
+							"raw": "{\r\n   \"nombreReunion\": \"prueba3\",\r\n    \"actorCreator\": \"Guido\",\r\n    \"dia\": \"2021-01-03\",\r\n    \"hora\": \"12:30\",\r\n    \"duracion\": 15\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -956,6 +1018,159 @@
 						"header": [],
 						"url": {
 							"raw": ""
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "ActorOficina",
+			"item": [
+				{
+					"name": "Add ActorOficina",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n     \"usuario\":  \"guido\",\r\n      \"oficina\": \"oficina3\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://diseno2020.herokuapp.com/api/actorOficina",
+							"protocol": "https",
+							"host": [
+								"diseno2020",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"actorOficina"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get ActorOficina",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://diseno2020.herokuapp.com/api/actorOficina",
+							"protocol": "https",
+							"host": [
+								"diseno2020",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"actorOficina"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Set salida ActorOficina",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\": \"Joaquin\",\r\n    \"oficina\": \"Oficina I\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/actorOficina/salir",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"actorOficina",
+								"salir"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HistorialActor",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{   \r\n    \"usuario\": \"facu\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://diseno2020.herokuapp.com/api/actorOficina/historialActor",
+							"protocol": "https",
+							"host": [
+								"diseno2020",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"actorOficina",
+								"historialActor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "HistorialOficina",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oficina\": \"ofcina2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://diseno2020.herokuapp.com/api/actorOficina/historialOficina",
+							"protocol": "https",
+							"host": [
+								"diseno2020",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"actorOficina",
+								"historialOficina"
+							]
 						}
 					},
 					"response": []
