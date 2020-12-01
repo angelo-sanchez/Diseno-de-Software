@@ -1,0 +1,90 @@
+[
+    {
+        "_id": "5fc3f12c1076ff64e4745a2f",
+        "actorCreator": "Guido",
+        "__v": 0
+    },
+    {
+        "_id": "5fc3f1f91076ff64e4745a30",
+        "actorCreator": "Guido",
+        "__v": 0
+    },
+    {
+        "_id": "5fc3f262a759a05b68060f2f",
+        "actorCreator": "Guido",
+        "duracion": 15,
+        "__v": 0
+    },
+    {
+        "_id": "5fc44b2638e72c66348d7535",
+        "nombreReunion": "prueba",
+        "actorCreator": "Guido",
+        "fecha_inicio": "2020-12-31T18:30:00.000Z",
+        "duracion": 15,
+        "__v": 0
+    },
+    {
+        "_id": "5fc44be538e72c66348d7536",
+        "nombreReunion": "prueba2",
+        "actorCreator": "Guido",
+        "fecha_inicio": "2020-12-31T18:30:00.000Z",
+        "duracion": 15,
+        "__v": 0
+    },
+    {
+        "_id": "5fc44c8e38e72c66348d7537",
+        "nombreReunion": "prueba2",
+        "actorCreator": "Guido",
+        "fecha_inicio": "2021-01-02T18:30:00.000Z",
+        "duracion": 15,
+        "__v": 0
+    },
+    {
+        "_id": "5fc44d1c38e72c66348d7538",
+        "nombreReunion": "prueba2",
+        "actorCreator": "Guido",
+        "fecha_inicio": "2021-01-02T18:31:00.000Z",
+        "duracion": 15,
+        "__v": 0
+    },
+    {
+        "_id": "5fc44d3c38e72c66348d7539",
+        "nombreReunion": "prueba2",
+        "actorCreator": "Guido",
+        "fecha_inicio": "2021-01-02T15:31:00.000Z",
+        "duracion": 15,
+        "__v": 0
+    },
+    {
+        "_id": "5fc44ec592c7505dc0f339a0",
+        "nombreReunion": "prueba2",
+        "actorCreator": "Guido",
+        "fecha_inicio": "2021-01-02T12:31:00.000Z",
+        "duracion": 15,
+        "__v": 0
+    },
+    {
+        "_id": "5fc45075fa6d441b6c4f675a",
+        "nombreReunion": "prueba2",
+        "actorCreator": "Guido",
+        "fecha_inicio": "2021-01-02T15:30:00.000Z",
+        "duracion": 15,
+        "__v": 0
+    },
+    {
+        "_id": "5fc4521610bb365c38d3a932",
+        "nombreReunion": "prueba3",
+        "actorCreator": "Guido",
+        "fecha_inicio": "2021-01-02T15:30:00.000Z",
+        "duracion": 15,
+        "__v": 0
+    },
+    {
+        "_id": "5fc4553d16df725b248ca64b",
+        "nombreReunion": "prueba3",
+        "actorCreator": "Guido",
+        "fecha_inicio": "2021-01-03T15:30:00.000Z",
+        "duracion": 15,
+        "__v": 0
+    }
+]

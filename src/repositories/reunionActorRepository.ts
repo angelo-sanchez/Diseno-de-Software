@@ -38,11 +38,12 @@ export class ReunionActorRepository {
             newClient.save()
                 .then((newClient: any) => {
                     if (newClient)
-                        resolve(newClient.getBasic());
+                        resolve(newClient);
                     else
                         resolve();
                 })
                 .catch((err: any) => {
+                    console.log(err);
                     reject({ msg: ('REUNION_CREATE'), error: err })
                 })
         });

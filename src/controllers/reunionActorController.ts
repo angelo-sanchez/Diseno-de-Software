@@ -32,7 +32,7 @@ export class ReunionActorController {
             });
     }
 
-    public create(req:Request, res:Response) {
+    public async create(req:Request, res:Response) {
         const data : any = {};
         
         if (req.body.reunion) {
@@ -43,19 +43,16 @@ export class ReunionActorController {
             data.actor = req.body.actor;
         }
 
-        
-
         if(req.body.value){
             data.value = req.body.value;
         }
-
-        ReunionActorService.create(data)
-        .then((data: any) => {
-            return res.status(data.status || 201).json(data.payload);
-        })
-        .catch((err: any) => {
-            return res.status(err.status || 500).json({ errors: [ { general: err.msg } ] });
-        });
+        try {
+            let created:any = await ReunionActorRepository.create(data)
+            return res.status(created.status || 201).json(created.payload || created);
+        }
+        catch (err) {
+            return res.status(err.status || 500).json({ errors: [{ general: err.msg || err, detalle: err.error || err }] });
+        }
     }
 
     public async setValue(req:Request, res:Response){

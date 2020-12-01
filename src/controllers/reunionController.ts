@@ -68,14 +68,9 @@ export class ReunionController {
             data.duracion = req.body.duracion;
         }
 
-
-        ReunionService.create(data)
-        .then((data: any) => {
-            return res.status(data.status || 201).json(data.payload);
-        })
-        .catch((err: any) => {
-            return res.status(err.status || 500).json({ errors: [ { general: err.msg } ] });
-        });
+        ReunionRepository.create(data)
+            .then(data => res.status(data.status || 200).json(data.payload || data))
+            .catch(err => res.status(err.status || 500).json(err.msg || err));
     }
 
     public async setDialogo(req: Request, res: Response){
