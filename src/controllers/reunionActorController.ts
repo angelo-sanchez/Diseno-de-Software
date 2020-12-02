@@ -2,7 +2,10 @@
 
 import { Request, Response } from 'express';
 import { ReunionActorRepository } from '../repositories/reunionActorRepository';
+import { ActorRepository } from '../repositories/actorRepository';
 import { ReunionActorService } from '../services/reunionActorService';
+import { isTemplateSpan } from 'typescript';
+import { request } from 'http';
 
 export class ReunionActorController {
 
@@ -73,29 +76,32 @@ export class ReunionActorController {
              }
     }
 
+    
+
     public async getActoresReunion (req: Request, res:Response){
-        try {
-            if(!req.body)
-            throw {
-                status: 400,
-                detail: "Error: La consulta no contiene los parámetros necesarios\n"
-                    + "\tSe espera body: { nombreReunion }"
-            }
-            const {nombreReunion} = req.body;
-            const dbResults: any = await ReunionActorRepository.findAll({reunion: nombreReunion});
+        if(req.body){
+           
+            const ActorResults: any = await ActorRepository.findAll({});
+            
             const results: any = {
-                nombre: nombreReunion,
+                nombre: "ParticipacionesMeeting",
                 items: []
             }
-            for (const item of dbResults) {
-                results.items.push({
-                    user_id: item.actor, // No sé si esto retorna bien
-                    value: item.value
+            for (const item of ActorResults) {
+                var valor = 0
+             const ReunionResults: any = await ReunionActorRepository.findAll({actor: item.nameid})
+             for(const it of ReunionResults){
+                 valor += it.value;
+             }
+ results.items.push({
+                    user_id: item.nameid, // No sé si esto retorna bien
+                    value: valor   
                 }); }
-                return res.status(200).json({out:results});
-       }catch(error){
-        return res.status(error.status || 500).json({ error: error.detail || error });
+
+                return res.status(200).json({out:results}); 
+       }else {
+        return res.status(500).json( "error al cargar" );
        }
-       
     }
+
 }

@@ -22,6 +22,10 @@ export class ActorController {
             query.email = req.query.email;
         }
 
+        if(req.query.nameid){
+            query.nameid = req.query.nameid;
+        }
+
         ActorService.findAll(query)
             .then((data: any) => {
                 return res.status(data.status || 200).json(data.payload);
@@ -30,6 +34,10 @@ export class ActorController {
                 console.log(err);
                 return res.status(err.status || 500).json({ errors: [ { general: err.msg } ] });
             });
+    }
+
+    public getAllNameid(req: Request, res: Response){
+        
     }
 
     public create(req:Request, res:Response) {
