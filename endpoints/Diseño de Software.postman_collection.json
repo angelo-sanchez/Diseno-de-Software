@@ -1337,6 +1337,143 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "UserStory",
+			"item": [
+				{
+					"name": "Cargar tiempo de lectura",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_story\": \"5f9d5673c893c11b3cd6f59c\",\r\n    \"actor\": \"facu\",\r\n    \"tiempo\": 15\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/userStory/tiempoLectura",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"userStory",
+								"tiempoLectura"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener tiempos de lectura",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/userStory/tiempoLectura?user_story=5f9d5673c893c11b3cd6f59c",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"userStory",
+								"tiempoLectura"
+							],
+							"query": [
+								{
+									"key": "user_story",
+									"value": "5f9d5673c893c11b3cd6f59c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cargar tiempo de trabajo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_story\": \"5f9d5673c893c11b3cd6f59c\",\r\n    \"actor\": \"facu\",\r\n    \"tiempo\": 15\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/userStory/tiempoLectura",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"userStory",
+								"tiempoLectura"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener tiempos de trabajo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/userStory/tiempoLectura?user_story=5f9d5673c893c11b3cd6f59c",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"userStory",
+								"tiempoLectura"
+							],
+							"query": [
+								{
+									"key": "user_story",
+									"value": "5f9d5673c893c11b3cd6f59c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener tiempo total trabajado",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/api/userStory/tiempoLectura?user_story=5f9d5673c893c11b3cd6f59c",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"userStory",
+								"tiempoLectura"
+							],
+							"query": [
+								{
+									"key": "user_story",
+									"value": "5f9d5673c893c11b3cd6f59c"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}
