@@ -1395,13 +1395,13 @@
 					"response": []
 				},
 				{
-					"name": "Cargar tiempo de trabajo",
+					"name": "Cargar inicio del trabajo",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"user_story\": \"5f9d5673c893c11b3cd6f59c\",\r\n    \"actor\": \"facu\",\r\n    \"tiempo\": 15\r\n}",
+							"raw": "{\r\n    \"user_story\": \"5f9d5673c893c11b3cd6f59c\",\r\n    \"actor\": \"facu\",\r\n    \"fecha\": \"2020-10-09 09:30:00\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1409,14 +1409,42 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_URL}}/api/userStory/tiempoLectura",
+							"raw": "{{BASE_URL}}/api/userStory/tiempoTrabajo",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
 								"userStory",
-								"tiempoLectura"
+								"tiempoTrabajo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cargar fin del trabajo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_story\": \"5f9d5673c893c11b3cd6f59c\",\r\n    \"actor\": \"facu\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/userStory/setFecha_fin",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"userStory",
+								"setFecha_fin"
 							]
 						}
 					},
@@ -1428,14 +1456,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/api/userStory/tiempoLectura?user_story=5f9d5673c893c11b3cd6f59c",
+							"raw": "{{BASE_URL}}/api/userStory/tiempoTrabajo?user_story=5f9d5673c893c11b3cd6f59c",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
 								"userStory",
-								"tiempoLectura"
+								"tiempoTrabajo"
 							],
 							"query": [
 								{
@@ -1453,14 +1481,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BASE_URL}}/api/userStory/tiempoLectura?user_story=5f9d5673c893c11b3cd6f59c",
+							"raw": "{{BASE_URL}}/api/userStory/tiempoTrabajoTotal?user_story=5f9d5673c893c11b3cd6f59c",
 							"host": [
 								"{{BASE_URL}}"
 							],
 							"path": [
 								"api",
 								"userStory",
-								"tiempoLectura"
+								"tiempoTrabajoTotal"
 							],
 							"query": [
 								{
