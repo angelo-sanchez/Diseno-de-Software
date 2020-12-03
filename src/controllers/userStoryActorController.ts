@@ -104,10 +104,18 @@ export class UserStoryActorController {
                 items: []
             }
             for (const item of dbResults) {
-                results.items.push({
-                    user_id: item.actor, // No sé si esto retorna bien
-                    values: (item.tiempoTrabajo.length > 0 ? item.tiempoTrabajo : [{tiempo: 0}]).map((value: any) => value.tiempo)
-                });
+                for (const fecha of item.tiempoTrabajo) {
+                    if (fecha.fecha_inicio != null)
+                        results.items.push({
+                            user_id: item.actor, // No sé si esto retorna bien
+                            value: fecha.fecha_inicio
+                        });
+                    if (fecha.fecha_fin != null)
+                        results.items.push({
+                            user_id: item.actor,
+                            value: fecha.fecha_fin
+                        });
+                }
             }
             return res.status(200).json(results);
         } catch (error) {
@@ -123,17 +131,23 @@ export class UserStoryActorController {
                 items: []
             }
             for (const item of dbResults) {
-                results.items.push({
-                    user_id: item.actor,
-                    value: item.tiempoTrabajo
-                })
+                if (item.fecha_inicio != null)
+                    results.items.push({
+                        user_id: item.actor,
+                        value: item.fecha_inicio
+                    });
+                if (item.fecha_fin != null)
+                    results.items.push({
+                        user_id: item.actor,
+                        value: item.fecha_fin
+                    });
             }
             return res.status(200).json(results);
         } catch (error) {
             return res.status(error.status || 500).json({ error: error.detail || error });
         }
     }
-    public async setFecha_fin(req: Request, res: Response){
+    public async setFecha_fin(req: Request, res: Response) {
         try {
             if (!(req.body && req.body.user_story && req.body.actor))
                 throw {
@@ -141,15 +155,15 @@ export class UserStoryActorController {
                     detail: "Error: La consulta no contiene los parámetros necesarios\n"
                         + "\tSe espera body: { user_story, actor, fecha(opcional) }"
                 }
-                let userStoryActor: any = await UserStoryActorRepository.findOne({
-                    user_story: req.body.user_story,
-                    actor: req.body.actor,
-                    "tiempoTrabajo.fecha_fin": null
-                })
-                for(const item of userStoryActor.tiempoTrabajo){
-                    if(item.fecha_fin== null)
-                        item.fecha_fin = req.body.fecha ||Date.now();
-                }
+            let userStoryActor: any = await UserStoryActorRepository.findOne({
+                user_story: req.body.user_story,
+                actor: req.body.actor,
+                "tiempoTrabajo.fecha_fin": null
+            })
+            for (const item of userStoryActor.tiempoTrabajo) {
+                if (item.fecha_fin == null)
+                    item.fecha_fin = req.body.fecha || Date.now();
+            }
             userStoryActor.save();
             return res.status(200).json({ out: true, userStoryActor });
         } catch (error) {
