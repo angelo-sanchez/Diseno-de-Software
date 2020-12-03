@@ -33,11 +33,11 @@ export class UserStoryActorController {
     }
     public async addTiempoTrabajo(req: Request, res: Response) {
         try {
-            if (!(req.body && req.body.user_story && req.body.actor && req.body.tiempo)) {
+            if (!(req.body && req.body.user_story && req.body.actor)) {
                 throw {
                     status: 400,
                     detail: "Error: La consulta no contiene los parámetros necesarios\n"
-                        + "\tSe espera body: { user_story, actor, tiempo, fecha (opcional) }"
+                        + "\tSe espera body: { user_story, actor, fecha (opcional) }"
                 }
             }
             let userStoryActor: any = await UserStoryActorRepository.findOne({
@@ -45,8 +45,7 @@ export class UserStoryActorController {
                 actor: req.body.actor
             });
             let tiempoTrabajo = {
-                tiempo: parseFloat(req.body.tiempo),
-                fecha: req.body.fecha || Date.now()
+                fecha_inicio: req.body.fecha || Date.now()
             }
             if (userStoryActor) {
                 userStoryActor.tiempoTrabajo.push(tiempoTrabajo);
@@ -130,6 +129,29 @@ export class UserStoryActorController {
                 })
             }
             return res.status(200).json(results);
+        } catch (error) {
+            return res.status(error.status || 500).json({ error: error.detail || error });
+        }
+    }
+    public async setFecha_fin(req: Request, res: Response){
+        try {
+            if (!(req.body && req.body.user_story && req.body.actor))
+                throw {
+                    status: 400,
+                    detail: "Error: La consulta no contiene los parámetros necesarios\n"
+                        + "\tSe espera body: { user_story, actor, fecha(opcional) }"
+                }
+                let userStoryActor: any = await UserStoryActorRepository.findOne({
+                    user_story: req.body.user_story,
+                    actor: req.body.actor,
+                    "tiempoTrabajo.fecha_fin": null
+                })
+                for(const item of userStoryActor.tiempoTrabajo){
+                    if(item.fecha_fin== null)
+                        item.fecha_fin = req.body.fecha ||Date.now();
+                }
+            userStoryActor.save();
+            return res.status(200).json({ out: true, userStoryActor });
         } catch (error) {
             return res.status(error.status || 500).json({ error: error.detail || error });
         }

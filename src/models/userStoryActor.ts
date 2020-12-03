@@ -11,17 +11,21 @@ export const UserStoryActorSchema = new Schema({
         type: String,
         required: true,
     },
+   
     tiempoLectura: {
         type: Number,
         required: false
     },
     tiempoTrabajo: {
         type: [{
-            fecha: {
+            fecha_inicio: {
                 type: Date,
-                default: Date.now
+                required: false,
             },
-            tiempo: Number
+            fecha_fin: {
+                type: Date,
+                required: false,
+            },
         }],
         default: []
     }
