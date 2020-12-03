@@ -8,9 +8,8 @@ export const UserStoryActorSchema = new Schema({
         ref: "Tarea"
     },
     actor: {
-        type: Types.ObjectId,
+        type: String,
         required: true,
-        ref: "Actor"
     },
     tiempoLectura: {
         type: Number,

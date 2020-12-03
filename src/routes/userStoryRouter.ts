@@ -3,7 +3,7 @@ import { UserStoryActorController } from "../controllers/userStoryActorControlle
 
 const router = Router();
 
-const ctrller = new UserStoryActorController();
+const ctrller:UserStoryActorController = new UserStoryActorController();
 router.route("/tiempoLectura")
     .get(ctrller.getTiempoLectura)
     .post(ctrller.addTiempoLectura);

@@ -22,18 +22,22 @@ export class UserStoryActorRepository {
     public static async findOne(filter: any) {
         return Model.findOne(filter).exec();
     }
-    public static async getTiempoLectura(filter: any) {
-        return Model
-            .aggregate() // Inicia un pipeline para procesar datos
-            .match(filter) // Filtra para que los que cumplen con el filtro pasen a la siguiente etapa
-            .group({ _id: "$actor", tiempoLectura: { $sum: "$tiempoLectura" } }) // Agrupa por actor y suma por los tiempoLectura 
-            .exec()
-    }
     public static async getTiempoTotalTrabajo(filter: any) {
-        return Model.aggregate()
-            .match(filter)
-            .group({ _id: "$actor", tiempoTrabajo: { $sum: "$tiempoTrabajo.tiempo" } })
-            .exec();
+        let dbResults: any = await Model.find(filter);
+        let res: any[] = [];
+        for (const item of dbResults) {
+            let actor = res.find((elem) => elem.actor == item.actor);
+            if (!actor)
+                res.push({
+                    actor: item.actor,
+                    tiempoTrabajo: item.tiempoTrabajo.reduce((prev:number, curr:any) => prev+curr.tiempo, 0)
+                });
+            else {
+                actor.tiempoTrabajo += item.tiempoTrabajo.reduce((prev:number, curr:any) => prev+curr.tiempo, 0);
+            }
+        }
+
+        return res;
     }
     /**
      * Este método se puede usar tanto para crear por primera vez un registro UserStory-Actor o actualizar uno

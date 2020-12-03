@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { ActorRepository } from "../repositories/actorRepository";
 import { UserStoryActorRepository } from "../repositories/userStoryActorRepository";
 
 export class UserStoryActorController {
+    constructor() { }
     public async addTiempoLectura(req: Request, res: Response) {
         try {
             if (!(req.body && req.body.user_story && req.body.actor && req.body.tiempo)) {
@@ -12,22 +12,21 @@ export class UserStoryActorController {
                         + "\tSe espera body: { user_story, actor, tiempo }"
                 }
             }
-            const actor = await ActorRepository.findActorBy({ nameid: req.body.actor });
             let userStoryActor: any = await UserStoryActorRepository.findOne({
                 user_story: req.body.user_story,
-                actor: actor._id
+                actor: req.body.actor
             })
             if (userStoryActor) {
                 userStoryActor.tiempoLectura += parseFloat(req.body.tiempo);
-                await userStoryActor.save();
+                userStoryActor = await userStoryActor.save();
             } else {
                 userStoryActor = await UserStoryActorRepository.create({
                     user_story: req.body.user_story,
-                    actor: actor._id,
+                    actor: req.body.actor,
                     tiempoLectura: parseFloat(req.body.tiempo)
                 });
             }
-            return res.status(200).json(userStoryActor.getBasic())
+            return res.status(200).json(userStoryActor);
         } catch (error) {
             return res.status(error.status || 500).json({ error: error.detail || error });
         }
@@ -41,10 +40,9 @@ export class UserStoryActorController {
                         + "\tSe espera body: { user_story, actor, tiempo, fecha (opcional) }"
                 }
             }
-            const actor = await ActorRepository.findActorBy({ nameid: req.body.actor });
             let userStoryActor: any = await UserStoryActorRepository.findOne({
                 user_story: req.body.user_story,
-                actor: actor._id
+                actor: req.body.actor
             });
             let tiempoTrabajo = {
                 tiempo: parseFloat(req.body.tiempo),
@@ -52,20 +50,20 @@ export class UserStoryActorController {
             }
             if (userStoryActor) {
                 userStoryActor.tiempoTrabajo.push(tiempoTrabajo);
-                await userStoryActor.save();
+                userStoryActor = await userStoryActor.save();
             } else {
                 userStoryActor = await UserStoryActorRepository.create({
                     user_story: req.body.user_story,
-                    actor: actor._id,
+                    actor: req.body.actor,
                     tiempoTrabajo: [tiempoTrabajo]
                 });
             }
-            return res.status(200).json(userStoryActor.getBasic())
+            return res.status(200).json(userStoryActor)
         } catch (error) {
             return res.status(error.status || 500).json({ error: error.detail || error });
         }
     }
-    private parseFilter(req: Request) {
+    private static parseFilter(req: Request) {
         const filter: any = {};
         // Generalmente cuando usamos el método GET, los parámetros no vienen en body, vienen en query
         // La diferencia es que el body está codificado en la consulta, mientras que
@@ -80,15 +78,16 @@ export class UserStoryActorController {
     }
     public async getTiempoLectura(req: Request, res: Response) {
         try {
-            const filter: any = this.parseFilter(req);
-            const dbResults = await UserStoryActorRepository.getTiempoLectura(filter);
+            const filter: any = UserStoryActorController.parseFilter(req);
+            const dbResults: any[] = await UserStoryActorRepository.find(filter);
             const results: any = {
                 nombre: "TiempoLecturaUserStory",
                 items: []
             }
+            console.log({ dbResults });
             for (const item of dbResults) {
                 results.items.push({
-                    user_id: item.actor.nameid, // No sé si esto retorna bien
+                    user_id: item.actor, // No sé si esto retorna bien
                     value: item.tiempoLectura
                 });
             }
@@ -99,7 +98,7 @@ export class UserStoryActorController {
     }
     public async getTiempoTrabajo(req: Request, res: Response) {
         try {
-            const filter: any = this.parseFilter(req);
+            const filter: any = UserStoryActorController.parseFilter(req);
             const dbResults: any = await UserStoryActorRepository.find(filter);
             const results: any = {
                 nombre: "TiempoTrabajoUserStory",
@@ -107,8 +106,8 @@ export class UserStoryActorController {
             }
             for (const item of dbResults) {
                 results.items.push({
-                    user_id: item.actor.nameid, // No sé si esto retorna bien
-                    values: item.tiempoTrabajo
+                    user_id: item.actor, // No sé si esto retorna bien
+                    values: (item.tiempoTrabajo.length > 0 ? item.tiempoTrabajo : [{tiempo: 0}]).map((value: any) => value.tiempo)
                 });
             }
             return res.status(200).json(results);
@@ -118,7 +117,7 @@ export class UserStoryActorController {
     }
     public async getTiempoTotalTrabajo(req: Request, res: Response) {
         try {
-            const filter = this.parseFilter(req);
+            const filter = UserStoryActorController.parseFilter(req);
             const dbResults = await UserStoryActorRepository.getTiempoTotalTrabajo(filter);
             const results: any = {
                 nombre: "TiempoTrabajoUserStory",
@@ -126,8 +125,8 @@ export class UserStoryActorController {
             }
             for (const item of dbResults) {
                 results.items.push({
-                    user_id: item.actor.nameid,
-                    value: item.tiempoTrabajado
+                    user_id: item.actor,
+                    value: item.tiempoTrabajo
                 })
             }
             return res.status(200).json(results);
